@@ -1,0 +1,13 @@
+{
+  "type": "syringe_mod:potion_crafting",
+  "center": {
+    "item": "minecraft:glass_bottle"
+  },
+  "result": {
+    "count": 1,
+    "id": "syringe_mod:resistance_medicine_mixture"
+  },
+  "side_a": {
+    "item": "minecraft:iron_ingot"
+  }
+}

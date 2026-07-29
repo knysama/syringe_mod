@@ -1,0 +1,12 @@
+{
+  "values": [
+    "syringe_mod:cure_injection",
+    "syringe_mod:stem_cell_injection",
+    "syringe_mod:cell_repair_injection",
+    "syringe_mod:saturation_metabolism_injection",
+    "syringe_mod:surge_injection",
+    "syringe_mod:resistance_injection",
+    "syringe_mod:experimental_injection",
+    "syringe_mod:immunity_enhancement_injection"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "syringe_mod:block/potion_crafting_table_bottom",
+    "side": "syringe_mod:block/potion_crafting_table_side",
+    "top": "syringe_mod:block/potion_crafting_table_top"
+  }
+}

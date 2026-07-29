@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "syringe_mod:item/saturation_metabolism_medicine_mixture"
+  }
+}

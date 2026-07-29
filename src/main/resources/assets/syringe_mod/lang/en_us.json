@@ -1,0 +1,41 @@
+{
+  "itemGroup.syringe_mod": "Syringe Mod",
+  "item.syringe_mod.cure_injection": "Cure Injection",
+  "item.syringe_mod.stem_cell_injection": "Stem Cell Activation Injection",
+  "item.syringe_mod.cell_repair_injection": "Cell Repair Treatment Injection",
+  "item.syringe_mod.mixed_medical_medicine_mixture": "Mixed Medical Medicine Mixture",
+  "item.syringe_mod.stem_cell_medicine_mixture": "Stem Cell Activation Medicine Mixture",
+  "item.syringe_mod.cell_repair_medicine_mixture": "Cell Repair Treatment Medicine Mixture",
+  "item.syringe_mod.saturation_metabolism_injection": "Saturation Metabolism Injection",
+  "item.syringe_mod.saturation_metabolism_medicine_mixture": "Saturation Metabolism Medicine Mixture",
+  "item.syringe_mod.surge_injection": "Surge Injection",
+  "item.syringe_mod.surge_medicine_mixture": "Surge Medicine Mixture",
+  "item.syringe_mod.resistance_injection": "Resistance Injection",
+  "item.syringe_mod.resistance_medicine_mixture": "Resistance Medicine Mixture",
+  "item.syringe_mod.x_reagent": "X Reagent",
+  "item.syringe_mod.experimental_medicine_mixture": "Experimental Medicine Mixture",
+  "item.syringe_mod.experimental_injection": "Experimental Injection",
+  "item.syringe_mod.immunity_enhancement_injection": "Immunity Enhancement Injection",
+  "item.syringe_mod.immunity_enhancement_medicine_mixture": "Immunity Enhancement Medicine Mixture",
+  "item.syringe_mod.syringe_bag": "Syringe Bag",
+  "item.syringe_mod.potion_crafting_table": "Potion Crafting Table",
+  "item.syringe_mod.potion_mixing_table": "Potion Mixing Table",
+
+  "block.syringe_mod.potion_crafting_table": "Potion Crafting Table",
+  "block.syringe_mod.potion_mixing_table": "Potion Mixing Table",
+
+  "container.syringe_mod.syringe_bag": "Syringe Bag",
+  "container.syringe_mod.potion_crafting_table": "Potion Crafting Table",
+  "container.syringe_mod.potion_mixing_table": "Potion Mixing Table",
+
+  "key.categories.syringe_mod": "Syringe Mod",
+  "key.syringe_mod.use_syringe": "Use Syringe",
+  "key.syringe_mod.open_syringe_bag": "Open Syringe Bag",
+
+  "subtitles.syringe_mod.injection": "Syringe injects",
+
+  "curios.identifier.injection_kit": "Injection Kit",
+
+  "recipe_type.syringe_mod.potion_crafting": "Potion Making",
+  "recipe_type.syringe_mod.potion_mixing": "Potion Mixing"
+}

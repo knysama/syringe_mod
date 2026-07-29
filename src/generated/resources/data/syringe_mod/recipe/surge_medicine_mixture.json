@@ -1,0 +1,16 @@
+{
+  "type": "syringe_mod:potion_crafting",
+  "center": {
+    "item": "minecraft:glass_bottle"
+  },
+  "result": {
+    "count": 1,
+    "id": "syringe_mod:surge_medicine_mixture"
+  },
+  "side_a": {
+    "item": "minecraft:prismarine_shard"
+  },
+  "side_b": {
+    "item": "minecraft:prismarine_crystals"
+  }
+}

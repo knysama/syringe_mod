@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "syringe_mod:block/potion_mixing_table"
+    }
+  }
+}

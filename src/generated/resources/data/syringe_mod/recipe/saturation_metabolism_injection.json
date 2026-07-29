@@ -1,0 +1,11 @@
+{
+  "type": "syringe_mod:crafting_injection",
+  "category": "misc",
+  "mixture": {
+    "item": "syringe_mod:saturation_metabolism_medicine_mixture"
+  },
+  "result": {
+    "count": 4,
+    "id": "syringe_mod:saturation_metabolism_injection"
+  }
+}

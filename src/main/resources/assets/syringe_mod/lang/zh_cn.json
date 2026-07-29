@@ -1,0 +1,41 @@
+{
+  "itemGroup.syringe_mod": "针剂模组",
+  "item.syringe_mod.cure_injection": "混合型医疗注射剂",
+  "item.syringe_mod.stem_cell_injection": "干细胞激活治疗注射剂",
+  "item.syringe_mod.cell_repair_injection": "细胞修复治疗注射剂",
+  "item.syringe_mod.mixed_medical_medicine_mixture": "混合型医疗药剂混合物",
+  "item.syringe_mod.stem_cell_medicine_mixture": "干细胞激活治疗药剂混合物",
+  "item.syringe_mod.cell_repair_medicine_mixture": "细胞修复治疗药剂混合物",
+  "item.syringe_mod.saturation_metabolism_injection": "饱腹代谢注射剂",
+  "item.syringe_mod.saturation_metabolism_medicine_mixture": "饱腹代谢药剂混合物",
+  "item.syringe_mod.surge_injection": "涌潮注射剂",
+  "item.syringe_mod.surge_medicine_mixture": "涌潮药剂混合物",
+  "item.syringe_mod.resistance_injection": "机体抗性注射剂",
+  "item.syringe_mod.resistance_medicine_mixture": "机体抗性药剂混合物",
+  "item.syringe_mod.x_reagent": "X试剂",
+  "item.syringe_mod.experimental_medicine_mixture": "试验性药剂混合物",
+  "item.syringe_mod.experimental_injection": "试验性注射剂",
+  "item.syringe_mod.immunity_enhancement_injection": "免疫增强注射剂",
+  "item.syringe_mod.immunity_enhancement_medicine_mixture": "免疫增强药剂混合物",
+  "item.syringe_mod.syringe_bag": "针剂包",
+  "item.syringe_mod.potion_crafting_table": "药剂制作台",
+  "item.syringe_mod.potion_mixing_table": "药剂混合台",
+
+  "block.syringe_mod.potion_crafting_table": "药剂制作台",
+  "block.syringe_mod.potion_mixing_table": "药剂混合台",
+
+  "container.syringe_mod.syringe_bag": "针剂包",
+  "container.syringe_mod.potion_crafting_table": "药剂制作台",
+  "container.syringe_mod.potion_mixing_table": "药剂混合台",
+
+  "key.categories.syringe_mod": "针剂模组",
+  "key.syringe_mod.use_syringe": "使用针剂",
+  "key.syringe_mod.open_syringe_bag": "打开注射器包",
+
+  "subtitles.syringe_mod.injection": "注射器注射",
+
+  "curios.identifier.injection_kit": "注射器包",
+
+  "recipe_type.syringe_mod.potion_crafting": "药水制作",
+  "recipe_type.syringe_mod.potion_mixing": "药水混合"
+}
