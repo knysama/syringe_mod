@@ -4,9 +4,10 @@ import cn.autoforged.syringe_mod.block.ModBlocks;
 import cn.autoforged.syringe_mod.blockentity.ModBlockEntities;
 import cn.autoforged.syringe_mod.blockentity.PotionCraftingTableBlockEntity;
 import cn.autoforged.syringe_mod.blockentity.PotionMixingTableBlockEntity;
+import cn.autoforged.syringe_mod.component.ModDataComponents;
+import cn.autoforged.syringe_mod.entity.ModEntities;
 import cn.autoforged.syringe_mod.item.ModItems;
 import cn.autoforged.syringe_mod.recipe.ModRecipeSerializers;
-import cn.autoforged.syringe_mod.sound.ModSounds;
 import cn.autoforged.syringe_mod.ui.ModMenuTypes;
 import cn.autoforged.syringe_mod.ui.ModTabs;
 import net.neoforged.bus.api.IEventBus;
@@ -20,10 +21,11 @@ public class SyringeMod {
     public static final String MODID = "syringe_mod";
 
     public SyringeMod(IEventBus modEventBus, ModContainer modContainer) {
+        ModDataComponents.DATA_COMPONENTS.register(modEventBus);
+        ModEntities.ENTITY_TYPES.register(modEventBus);
         ModBlocks.BLOCKS.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
         ModBlockEntities.BLOCK_ENTITIES.register(modEventBus);
-        ModSounds.SOUND_EVENTS.register(modEventBus);
         ModTabs.CREATIVE_TABS.register(modEventBus);
         ModMenuTypes.MENUS.register(modEventBus);
         ModRecipeSerializers.SERIALIZERS.register(modEventBus);

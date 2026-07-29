@@ -1,16 +1,13 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "category": "equipment",
-  "ingredients": [
-    {
-      "item": "syringe_mod:experimental_medicine_mixture"
-    },
-    {
-      "item": "minecraft:iron_nugget"
-    }
-  ],
+  "type": "syringe_mod:potion_mixing",
+  "left": {
+    "item": "syringe_mod:resistance_injection"
+  },
   "result": {
     "count": 2,
     "id": "syringe_mod:experimental_injection"
+  },
+  "right": {
+    "item": "syringe_mod:surge_injection"
   }
 }

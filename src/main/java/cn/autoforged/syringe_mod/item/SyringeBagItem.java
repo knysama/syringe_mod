@@ -1,6 +1,7 @@
 package cn.autoforged.syringe_mod.item;
 
 import cn.autoforged.syringe_mod.SyringeMod;
+import cn.autoforged.syringe_mod.component.ModDataComponents;
 import cn.autoforged.syringe_mod.ui.SyringeBagMenu;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -10,11 +11,14 @@ import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.level.Level;
 
 public class SyringeBagItem extends Item {
     public SyringeBagItem(Properties properties) {
-        super(properties);
+        super(properties
+                .stacksTo(1)
+                .component(ModDataComponents.MEDICINE_BAG_CONTENTS, ItemContainerContents.EMPTY));
     }
 
     @Override

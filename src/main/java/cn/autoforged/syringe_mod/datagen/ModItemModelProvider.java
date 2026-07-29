@@ -4,6 +4,7 @@ import cn.autoforged.syringe_mod.SyringeMod;
 import cn.autoforged.syringe_mod.item.ModItems;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
 public class ModItemModelProvider extends ItemModelProvider {
@@ -22,17 +23,17 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.RESISTANCE_INJECTION.get());
         basicItem(ModItems.EXPERIMENTAL_INJECTION.get());
         basicItem(ModItems.IMMUNITY_ENHANCEMENT_INJECTION.get());
+        withExistingParent(ModItems.POTION_AMPOULE.getId().getPath(), mcLoc("item/generated"))
+                .texture("layer0", modLoc("item/potion_ampoule_liquid"))
+                .texture("layer1", modLoc("item/potion_ampoule_glass"));
 
-        basicItem(ModItems.SYRINGE_BAG.get());
+        getBuilder(ModItems.SYRINGE_BAG.getId().getPath())
+                .parent(new ModelFile.UncheckedModelFile(mcLoc("builtin/entity")))
+                .texture("particle", modLoc("item/syringe_bag"));
+        withExistingParent("syringe_bag_open", mcLoc("item/generated"))
+                .texture("layer0", modLoc("item/syringe_bag_open"));
 
-        basicItem(ModItems.MIXED_MEDICAL_MEDICINE_MIXTURE.get());
-        basicItem(ModItems.STEM_CELL_MEDICINE_MIXTURE.get());
-        basicItem(ModItems.CELL_REPAIR_MEDICINE_MIXTURE.get());
-        basicItem(ModItems.SATURATION_METABOLISM_MEDICINE_MIXTURE.get());
-        basicItem(ModItems.SURGE_MEDICINE_MIXTURE.get());
-        basicItem(ModItems.RESISTANCE_MEDICINE_MIXTURE.get());
-        basicItem(ModItems.EXPERIMENTAL_MEDICINE_MIXTURE.get());
-        basicItem(ModItems.IMMUNITY_ENHANCEMENT_MEDICINE_MIXTURE.get());
-        basicItem(ModItems.X_REAGENT.get());
+        withExistingParent(ModItems.JOJA_COLA.getId().getPath(), mcLoc("item/generated"))
+                .texture("layer0", modLoc("item/joja_cola"));
     }
 }

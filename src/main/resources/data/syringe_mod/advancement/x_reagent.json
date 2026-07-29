@@ -1,0 +1,21 @@
+{
+  "parent": "syringe_mod:root",
+  "display": {
+    "icon": {"id": "syringe_mod:experimental_injection"},
+    "title": {"translate": "advancement.syringe_mod.x_reagent.title"},
+    "description": {"translate": "advancement.syringe_mod.x_reagent.description"},
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_x_reagent": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{"items": "syringe_mod:experimental_injection"}]
+      }
+    }
+  },
+  "requirements": [["has_x_reagent"]]
+}

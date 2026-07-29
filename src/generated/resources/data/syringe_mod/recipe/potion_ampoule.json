@@ -1,0 +1,13 @@
+{
+  "type": "syringe_mod:potion_crafting",
+  "center": {
+    "item": "minecraft:glass_bottle"
+  },
+  "result": {
+    "count": 4,
+    "id": "syringe_mod:potion_ampoule"
+  },
+  "side_a": {
+    "item": "minecraft:potion"
+  }
+}

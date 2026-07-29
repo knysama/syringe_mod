@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "syringe_mod:item/potion_ampoule_liquid",
+    "layer1": "syringe_mod:item/potion_ampoule_glass"
+  }
+}

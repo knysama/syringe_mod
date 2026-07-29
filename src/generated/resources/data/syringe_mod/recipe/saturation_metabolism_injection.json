@@ -1,11 +1,16 @@
 {
-  "type": "syringe_mod:crafting_injection",
-  "category": "misc",
-  "mixture": {
-    "item": "syringe_mod:saturation_metabolism_medicine_mixture"
+  "type": "syringe_mod:potion_crafting",
+  "center": {
+    "item": "minecraft:glass_bottle"
   },
   "result": {
     "count": 4,
     "id": "syringe_mod:saturation_metabolism_injection"
+  },
+  "side_a": {
+    "item": "minecraft:sugar"
+  },
+  "side_b": {
+    "item": "minecraft:golden_carrot"
   }
 }

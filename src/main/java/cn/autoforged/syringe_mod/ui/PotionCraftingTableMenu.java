@@ -8,19 +8,20 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.SlotItemHandler;
 
 public class PotionCraftingTableMenu extends AbstractContainerMenu {
-    private static final int SLOT_LEFT_X = 42;
-    private static final int SLOT_CENTER_X = 77;
-    private static final int SLOT_RIGHT_X = 112;
-    private static final int SLOT_OUTPUT_X = 77;
-    private static final int ROW_INPUT_Y = 5;
-    private static final int ROW_OUTPUT_Y = 69;
-    private static final int PLAYER_INV_Y = 101;
-    private static final int PLAYER_INV_OFFSET_X = 5;
-    private static final int HOTBAR_Y = 159;
+    private static final int SLOT_LEFT_X = 20;
+    private static final int SLOT_CENTER_X = 46;
+    private static final int SLOT_RIGHT_X = 72;
+    private static final int SLOT_OUTPUT_X = 145;
+    private static final int ROW_INPUT_Y = 43;
+    private static final int ROW_OUTPUT_Y = 43;
+    private static final int PLAYER_INV_Y = 110;
+    private static final int PLAYER_INV_OFFSET_X = 7;
+    private static final int HOTBAR_Y = 168;
 
     private final PotionCraftingTableBlockEntity blockEntity;
     private final ContainerData containerData;
@@ -34,7 +35,7 @@ public class PotionCraftingTableMenu extends AbstractContainerMenu {
         IItemHandler handler = be.getItemHandler(null);
 
         addSlot(new SlotItemHandler(handler, 0, SLOT_LEFT_X, ROW_INPUT_Y));
-        addSlot(new SlotItemHandler(handler, 1, SLOT_CENTER_X, ROW_INPUT_Y));
+        addSlot(new GlassBottleSlot(handler, 1, SLOT_CENTER_X, ROW_INPUT_Y));
         addSlot(new SlotItemHandler(handler, 2, SLOT_RIGHT_X, ROW_INPUT_Y));
         addSlot(new OutputSlot(handler, 3, SLOT_OUTPUT_X, ROW_OUTPUT_Y));
 
@@ -74,7 +75,11 @@ public class PotionCraftingTableMenu extends AbstractContainerMenu {
                 return ItemStack.EMPTY;
             }
         } else {
-            if (!moveItemStackTo(stack, 0, CONTAINER_END, false)) {
+            boolean moved = stack.is(Items.GLASS_BOTTLE)
+                    ? moveItemStackTo(stack, 1, 2, false)
+                    : moveItemStackTo(stack, 0, 1, false)
+                            || moveItemStackTo(stack, 2, 3, false);
+            if (!moved) {
                 return ItemStack.EMPTY;
             }
         }
@@ -93,7 +98,9 @@ public class PotionCraftingTableMenu extends AbstractContainerMenu {
     }
 
     public PotionCraftingTableBlockEntity getBlockEntity() { return blockEntity; }
-    public ContainerData getContainerData() { return containerData; }
+    public int getProgress() { return containerData.get(0); }
+    public int getMaxProgress() { return containerData.get(1); }
+    public boolean isOutputBlocked() { return containerData.get(2) != 0; }
 
     private static class OutputSlot extends SlotItemHandler {
         public OutputSlot(IItemHandler handler, int index, int x, int y) {
@@ -101,5 +108,16 @@ public class PotionCraftingTableMenu extends AbstractContainerMenu {
         }
         @Override
         public boolean mayPlace(ItemStack stack) { return false; }
+    }
+
+    private static class GlassBottleSlot extends SlotItemHandler {
+        public GlassBottleSlot(IItemHandler handler, int index, int x, int y) {
+            super(handler, index, x, y);
+        }
+
+        @Override
+        public boolean mayPlace(ItemStack stack) {
+            return stack.is(Items.GLASS_BOTTLE);
+        }
     }
 }

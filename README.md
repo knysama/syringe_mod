@@ -1,25 +1,116 @@
+# 针剂模组（Syringe Mod）
 
-Installation information
-=======
+一个面向 Minecraft 1.21.1 / NeoForge 的药剂与注射系统模组。模组用不可直接饮用的安瓿瓶承载药剂，并围绕注射枪、随身药剂包、药剂制作台和药剂混合台建立完整的制作、装填与使用流程。
 
-This template repository can be directly cloned to get you started with a new
-mod. Simply create a new repository cloned from this one, by following the
-instructions provided by [GitHub](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
+当前版本：`1.27.0`
 
-Once you have your clone, simply open the repository in the IDE of your choice. The usual recommendation for an IDE is either IntelliJ IDEA or Eclipse.
+> 本项目仍处于开发与实机测试阶段。更新测试包前请先完全退出 Minecraft，避免正在运行的游戏继续读取被替换的 JAR。
 
-If at any point you are missing libraries in your IDE, or you've run into problems you can
-run `gradlew --refresh-dependencies` to refresh the local cache. `gradlew clean` to reset everything 
-{this does not affect your code} and then start the process again.
+## 环境要求
 
-Mapping Names:
-============
-By default, the MDK is configured to use the official mapping names from Mojang for methods and fields 
-in the Minecraft codebase. These names are covered by a specific license. All modders should be aware of this
-license. For the latest license text, refer to the mapping file itself, or the reference copy here:
-https://github.com/NeoForged/NeoForm/blob/main/Mojang.md
+- Minecraft `1.21.1`
+- NeoForge `[21.1.228, 21.2)`
+- Java `21`
+- Curios `9.5+`（可选；安装后药剂包可放入腰带饰品栏）
 
-Additional Resources: 
-==========
-Community Documentation: https://docs.neoforged.net/  
-NeoForged Discord: https://discord.neoforged.net/
+项目以 NeoForge `21.1.228` 作为编译与向下兼容基线，并已在该版本环境中启动运行。
+
+## 主要内容
+
+### 注射枪
+
+- 不可堆叠，基础容量为 64 次注射。
+- 只接受原版“耐久”附魔；每级固定增加 16 次容量。
+- 左键：给自己注射当前装填的药剂。
+- 按住右键：进入瞄准状态；瞄准时左键发射针状弹体。
+- 弹体保留所装安瓿的药剂数据，带有对应药剂颜色的低密度粒子拖尾。
+- 枪身药剂管会显示当前装填药剂的液体颜色；未装填时保持空管状态。
+- 注射、瞄准、射击和换弹均有对应的手持表现。
+- 药剂耗尽后不返还空安瓿瓶。
+
+### 换弹与快捷操作
+
+- `R` 短按：自动装填可用列表中的第一支安瓿。
+- `R` 长按约 0.4 秒：打开药剂轮盘并释放鼠标，可直接点选药剂。
+- 换弹只在主手持有注射枪时生效。
+- 自动查找顺序以药剂包为优先，其后才是玩家物品栏。
+- 更换药剂时，枪内原有安瓿会先退回可用的药剂包或物品栏位置；没有安全退回空间时不会吞掉药剂。
+- `V`：执行快捷注射。
+
+### 安瓿瓶
+
+- 背包内每组最多 16 支。
+- 药剂种类或原版药水数据不同的安瓿不能混堆。
+- 不能直接饮用，只能作为注射枪弹药。
+- 支持八种模组药剂以及带有 `PotionContents` 的原版药水安瓿。
+- 一个原版药水加一个玻璃瓶，可在工作台中制作 4 支对应的原版药水安瓿。
+
+### 药剂包
+
+- 不可堆叠、不可放置的随身容器。
+- 只存放药剂类物品，包内每格最多堆叠 64 支安瓿。
+- `Shift+E` 快速打开药剂包。
+- 安装 Curios 后可作为腰带饰品装备，并使用对应的佩戴模型。
+- 具有开盖、收纳安瓿和关盖动画；关闭动画为打开动画的反向播放。
+
+### 药剂制作台
+
+- 单方块工作站，采用类似熔炉的加工时间逻辑。
+- 保留模组药剂制作配方，并支持原版药水安瓿制作。
+- 中央容器槽只接收原版玻璃瓶，GUI 中有明确的玻璃瓶槽位提示。
+- 加工期间使用低开销的材质动画表现水浴与工作状态。
+
+### 药剂混合台
+
+- 单方块离心机式工作站，与药剂制作台使用相近的加工流程。
+- 保留现有混合配方和专用 GUI。
+- 加工时盖子闭合、内部转子旋转，静止时保持开启展示状态。
+- 剧毒药水与虚弱药水可混合制作 Joja 可乐；图标为独立绘制的致敬设计，并非直接复制其他游戏资源。
+
+## 进度与成就
+
+- **九尾鸡的乱狂 / A Furious Tailcock**：因注射药剂产生副作用。
+- **那就战个未来吧 / How About We Fight the Future a Bit?**：制作 X 药剂。
+- **那我问你那我问你 / Bro, Lemme Ask You—Lemme Ask You...**：注射全部八种模组药剂，进度显示为 `0/8` 至 `8/8`。
+- **Joja公司年度会员 / Joja Co. Member Of The Year**：制作 Joja 可乐。
+
+中英文名称刻意保留了原版成就、玩家社群和流行文化中的反向梗或致敬语气。
+
+## 安装
+
+1. 安装 Minecraft 1.21.1、Java 21 与兼容版本的 NeoForge。
+2. 将构建出的 `syringe_mod-1.27.0.jar` 放入实例的 `mods` 文件夹。
+3. 如需腰带饰品栏支持，再安装兼容版本的 Curios。
+4. 启动游戏并在“控制”设置中确认针剂模组的按键绑定。
+
+## 从源码构建
+
+Windows：
+
+```powershell
+.\gradlew.bat build
+```
+
+生成数据资源：
+
+```powershell
+.\gradlew.bat runData
+```
+
+构建产物位于：
+
+```text
+build/libs/syringe_mod-1.27.0.jar
+```
+
+模型、贴图参考、Blockbench 工程和建模说明位于 [`docs`](docs)；注射系统的需求与设计记录位于 [`specs/injection-system-overhaul`](specs/injection-system-overhaul)。
+
+## 当前验证范围
+
+- NeoForge 21.1.228 下完成 Gradle 构建和数据生成。
+- NeoForge 21.1.228 客户端环境已进行启动与功能迭代测试。
+- 专用服务器仍建议在合并前补充多人联机、断线重连和饰品栏同步测试。
+
+## 许可
+
+All Rights Reserved。除非仓库所有者另行授权，不得擅自再分发本项目代码或资源。

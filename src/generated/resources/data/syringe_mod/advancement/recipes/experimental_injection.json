@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_left_ampoule": {
+      "conditions": {
+        "items": [
+          {
+            "items": "syringe_mod:resistance_injection"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_right_ampoule": {
+      "conditions": {
+        "items": [
+          {
+            "items": "syringe_mod:surge_injection"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "syringe_mod:experimental_injection"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_left_ampoule",
+      "has_right_ampoule",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "syringe_mod:experimental_injection"
+    ]
+  }
+}

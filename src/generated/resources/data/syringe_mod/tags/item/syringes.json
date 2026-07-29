@@ -7,6 +7,7 @@
     "syringe_mod:surge_injection",
     "syringe_mod:resistance_injection",
     "syringe_mod:experimental_injection",
-    "syringe_mod:immunity_enhancement_injection"
+    "syringe_mod:immunity_enhancement_injection",
+    "syringe_mod:potion_ampoule"
   ]
 }

@@ -1,0 +1,32 @@
+{
+  "parent": "syringe_mod:root",
+  "display": {
+    "icon": {"id": "syringe_mod:potion_ampoule"},
+    "title": {"translate": "advancement.syringe_mod.all_medicines.title"},
+    "description": {"translate": "advancement.syringe_mod.all_medicines.description"},
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "cure": {"trigger": "minecraft:impossible"},
+    "stem_cell": {"trigger": "minecraft:impossible"},
+    "cell_repair": {"trigger": "minecraft:impossible"},
+    "saturation_metabolism": {"trigger": "minecraft:impossible"},
+    "surge": {"trigger": "minecraft:impossible"},
+    "resistance": {"trigger": "minecraft:impossible"},
+    "immunity_enhancement": {"trigger": "minecraft:impossible"},
+    "experimental": {"trigger": "minecraft:impossible"}
+  },
+  "requirements": [
+    ["cure"],
+    ["stem_cell"],
+    ["cell_repair"],
+    ["saturation_metabolism"],
+    ["surge"],
+    ["resistance"],
+    ["immunity_enhancement"],
+    ["experimental"]
+  ]
+}

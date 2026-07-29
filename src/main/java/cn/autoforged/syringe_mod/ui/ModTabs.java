@@ -19,26 +19,24 @@ public class ModTabs {
                     .withTabsBefore(CreativeModeTabs.FOOD_AND_DRINKS)
                     .icon(() -> ModItems.CURE_INJECTION.get().getDefaultInstance())
                     .displayItems((params, output) -> {
+                        output.accept(ModItems.INJECTION_GUN.get());
+
+                        // Ammunition: one uninterrupted family of ampoule silhouettes.
                         output.accept(ModItems.CURE_INJECTION.get());
                         output.accept(ModItems.STEM_CELL_INJECTION.get());
                         output.accept(ModItems.CELL_REPAIR_INJECTION.get());
-                        output.accept(ModItems.MIXED_MEDICAL_MEDICINE_MIXTURE.get());
-                        output.accept(ModItems.STEM_CELL_MEDICINE_MIXTURE.get());
-                        output.accept(ModItems.CELL_REPAIR_MEDICINE_MIXTURE.get());
                         output.accept(ModItems.SATURATION_METABOLISM_INJECTION.get());
-                        output.accept(ModItems.SATURATION_METABOLISM_MEDICINE_MIXTURE.get());
                         output.accept(ModItems.SURGE_INJECTION.get());
-                        output.accept(ModItems.SURGE_MEDICINE_MIXTURE.get());
                         output.accept(ModItems.RESISTANCE_INJECTION.get());
-                        output.accept(ModItems.RESISTANCE_MEDICINE_MIXTURE.get());
-                        output.accept(ModItems.X_REAGENT.get());
-                        output.accept(ModItems.EXPERIMENTAL_MEDICINE_MIXTURE.get());
-                        output.accept(ModItems.EXPERIMENTAL_INJECTION.get());
                         output.accept(ModItems.IMMUNITY_ENHANCEMENT_INJECTION.get());
-                        output.accept(ModItems.IMMUNITY_ENHANCEMENT_MEDICINE_MIXTURE.get());
+                        output.accept(ModItems.EXPERIMENTAL_INJECTION.get());
+                        output.accept(ModItems.POTION_AMPOULE.get());
+
+                        // Equipment and work blocks.
                         output.accept(ModItems.SYRINGE_BAG.get());
                         output.accept(ModItems.POTION_CRAFTING_TABLE.get());
                         output.accept(ModItems.POTION_MIXING_TABLE.get());
+                        output.accept(ModItems.JOJA_COLA.get());
                     })
                     .build());
 

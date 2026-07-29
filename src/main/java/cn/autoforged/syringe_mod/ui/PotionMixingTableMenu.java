@@ -12,14 +12,14 @@ import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.SlotItemHandler;
 
 public class PotionMixingTableMenu extends AbstractContainerMenu {
-    private static final int SLOT_LEFT_X = 66;
-    private static final int SLOT_RIGHT_X = 88;
-    private static final int SLOT_OUTPUT_X = 77;
-    private static final int ROW_INPUT_Y = 5;
-    private static final int ROW_OUTPUT_Y = 69;
-    private static final int PLAYER_INV_Y = 101;
-    private static final int PLAYER_INV_OFFSET_X = 5;
-    private static final int HOTBAR_Y = 159;
+    private static final int SLOT_INPUT_X = 24;
+    private static final int SLOT_LEFT_INPUT_Y = 34;
+    private static final int SLOT_RIGHT_INPUT_Y = 62;
+    private static final int SLOT_OUTPUT_X = 143;
+    private static final int SLOT_OUTPUT_Y = 48;
+    private static final int PLAYER_INV_Y = 110;
+    private static final int PLAYER_INV_OFFSET_X = 7;
+    private static final int HOTBAR_Y = 168;
 
     private final PotionMixingTableBlockEntity blockEntity;
     private final ContainerData containerData;
@@ -32,9 +32,9 @@ public class PotionMixingTableMenu extends AbstractContainerMenu {
         this.access = ContainerLevelAccess.create(be.getLevel(), be.getBlockPos());
         IItemHandler handler = be.getItemHandler(null);
 
-        addSlot(new SlotItemHandler(handler, 0, SLOT_LEFT_X, ROW_INPUT_Y));
-        addSlot(new SlotItemHandler(handler, 1, SLOT_RIGHT_X, ROW_INPUT_Y));
-        addSlot(new OutputSlot(handler, 2, SLOT_OUTPUT_X, ROW_OUTPUT_Y));
+        addSlot(new SlotItemHandler(handler, 0, SLOT_INPUT_X, SLOT_LEFT_INPUT_Y));
+        addSlot(new SlotItemHandler(handler, 1, SLOT_INPUT_X, SLOT_RIGHT_INPUT_Y));
+        addSlot(new OutputSlot(handler, 2, SLOT_OUTPUT_X, SLOT_OUTPUT_Y));
 
         addDataSlots(this.containerData);
 
@@ -92,6 +92,9 @@ public class PotionMixingTableMenu extends AbstractContainerMenu {
 
     public PotionMixingTableBlockEntity getBlockEntity() { return blockEntity; }
     public ContainerData getContainerData() { return containerData; }
+    public int getProgress() { return containerData.get(0); }
+    public int getMaxProgress() { return containerData.get(1); }
+    public boolean isOutputBlocked() { return containerData.get(2) != 0; }
 
     private static class OutputSlot extends SlotItemHandler {
         public OutputSlot(IItemHandler handler, int index, int x, int y) {

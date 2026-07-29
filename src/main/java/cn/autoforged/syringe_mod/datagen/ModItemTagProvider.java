@@ -29,19 +29,11 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.SURGE_INJECTION.get())
                 .add(ModItems.RESISTANCE_INJECTION.get())
                 .add(ModItems.EXPERIMENTAL_INJECTION.get())
-                .add(ModItems.IMMUNITY_ENHANCEMENT_INJECTION.get());
+                .add(ModItems.IMMUNITY_ENHANCEMENT_INJECTION.get())
+                .add(ModItems.POTION_AMPOULE.get());
 
-        tag(ModTags.Items.CURIOS_INJECTION_KIT)
+        tag(ModTags.Items.CURIOS_BELT)
                 .add(ModItems.SYRINGE_BAG.get());
 
-        tag(ModTags.Items.MEDICINE_MIXTURES)
-                .add(ModItems.MIXED_MEDICAL_MEDICINE_MIXTURE.get())
-                .add(ModItems.STEM_CELL_MEDICINE_MIXTURE.get())
-                .add(ModItems.CELL_REPAIR_MEDICINE_MIXTURE.get())
-                .add(ModItems.SATURATION_METABOLISM_MEDICINE_MIXTURE.get())
-                .add(ModItems.SURGE_MEDICINE_MIXTURE.get())
-                .add(ModItems.RESISTANCE_MEDICINE_MIXTURE.get())
-                .add(ModItems.EXPERIMENTAL_MEDICINE_MIXTURE.get())
-                .add(ModItems.IMMUNITY_ENHANCEMENT_MEDICINE_MIXTURE.get());
     }
 }

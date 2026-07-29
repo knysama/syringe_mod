@@ -1,5 +1,6 @@
 package cn.autoforged.syringe_mod.blockentity;
 
+import cn.autoforged.syringe_mod.block.PotionCraftingTableBlock;
 import cn.autoforged.syringe_mod.recipe.ModRecipeTypes;
 import cn.autoforged.syringe_mod.recipe.PotionCraftingInput;
 import cn.autoforged.syringe_mod.recipe.PotionCraftingRecipe;
@@ -21,6 +22,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -48,13 +50,15 @@ public class PotionCraftingTableBlockEntity extends BlockEntity implements MenuP
         @Override
         public boolean isItemValid(int slot, ItemStack stack) {
             if (slot == SLOT_OUTPUT) return false;
+            if (slot == SLOT_CENTER_INPUT) return stack.is(Items.GLASS_BOTTLE);
             return super.isItemValid(slot, stack);
         }
     };
 
-    private final ContainerData data = new SimpleContainerData(2);
+    private final ContainerData data = new SimpleContainerData(3);
     private int progress = 0;
     private int maxProgress = 80;
+    private ItemStack processingResult = ItemStack.EMPTY;
     private final RecipeManager.CachedCheck<PotionCraftingInput, PotionCraftingRecipe> quickCheck =
             RecipeManager.createCheck(ModRecipeTypes.POTION_CRAFTING);
 
@@ -82,30 +86,37 @@ public class PotionCraftingTableBlockEntity extends BlockEntity implements MenuP
 
         var recipeHolder = quickCheck.getRecipeFor(input, level);
         if (recipeHolder.isEmpty()) {
+            setWorking(false);
             if (progress != 0) {
                 progress = 0;
+                processingResult = ItemStack.EMPTY;
                 setChanged();
             }
             data.set(0, 0);
             data.set(1, maxProgress);
+            data.set(2, 0);
             return;
         }
 
         PotionCraftingRecipe recipe = recipeHolder.get().value();
         ItemStack result = recipe.assemble(input, level.registryAccess());
+        if (progress > 0 && !ItemStack.isSameItemSameComponents(processingResult, result)) {
+            progress = 0;
+        }
+        processingResult = result.copy();
         ItemStack output = itemHandler.getStackInSlot(SLOT_OUTPUT);
 
         if (!output.isEmpty() && (!ItemStack.isSameItemSameComponents(output, result)
                 || output.getCount() + result.getCount() > output.getMaxStackSize())) {
-            if (progress != 0) {
-                progress = 0;
-                setChanged();
-            }
-            data.set(0, 0);
+            setWorking(false);
+            data.set(0, progress);
             data.set(1, maxProgress);
+            data.set(2, 1);
             return;
         }
 
+        data.set(2, 0);
+        setWorking(true);
         progress++;
         data.set(0, progress);
         data.set(1, maxProgress);
@@ -127,8 +138,19 @@ public class PotionCraftingTableBlockEntity extends BlockEntity implements MenuP
                 output.grow(result.getCount());
             }
             progress = 0;
+            processingResult = ItemStack.EMPTY;
         }
         setChanged();
+    }
+
+    private void setWorking(boolean working) {
+        if (level == null) return;
+        BlockState state = getBlockState();
+        if (state.hasProperty(PotionCraftingTableBlock.LIT)
+                && state.getValue(PotionCraftingTableBlock.LIT) != working) {
+            level.setBlock(worldPosition, state.setValue(PotionCraftingTableBlock.LIT, working),
+                    net.minecraft.world.level.block.Block.UPDATE_CLIENTS);
+        }
     }
 
     @Override
@@ -147,6 +169,9 @@ public class PotionCraftingTableBlockEntity extends BlockEntity implements MenuP
         super.saveAdditional(tag, registries);
         tag.put("inventory", itemHandler.serializeNBT(registries));
         tag.putInt("progress", progress);
+        if (!processingResult.isEmpty()) {
+            tag.put("processing_result", processingResult.save(registries));
+        }
     }
 
     @Override
@@ -154,6 +179,7 @@ public class PotionCraftingTableBlockEntity extends BlockEntity implements MenuP
         super.loadAdditional(tag, registries);
         itemHandler.deserializeNBT(registries, tag.getCompound("inventory"));
         progress = tag.getInt("progress");
+        processingResult = ItemStack.parseOptional(registries, tag.getCompound("processing_result"));
     }
 
     @Override

@@ -1,15 +1,14 @@
 package cn.autoforged.syringe_mod.ui;
 
 import cn.autoforged.syringe_mod.tag.ModTags;
+import cn.autoforged.syringe_mod.item.AmpouleItem;
+import cn.autoforged.syringe_mod.item.MedicineBagItemHandler;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.component.DataComponents;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.component.CustomData;
 import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import net.neoforged.neoforge.items.SlotItemHandler;
@@ -48,34 +47,23 @@ public class SyringeBagMenu extends AbstractContainerMenu {
         this(id, playerInv, new ItemStackHandler(CONTAINER_SIZE) {
             @Override
             public boolean isItemValid(int slot, ItemStack stack) {
-                return stack.is(ModTags.Items.SYRINGES);
+                return stack.getItem() instanceof AmpouleItem;
+            }
+
+            @Override
+            public int getSlotLimit(int slot) {
+                return MedicineBagItemHandler.INTERNAL_STACK_LIMIT;
+            }
+
+            @Override
+            protected int getStackLimit(int slot, ItemStack stack) {
+                return MedicineBagItemHandler.INTERNAL_STACK_LIMIT;
             }
         }, null, null);
     }
 
     private static IItemHandler createServerHandler(HolderLookup.Provider registries, ItemStack bagStack) {
-        ItemStackHandler handler = new ItemStackHandler(CONTAINER_SIZE) {
-            @Override
-            public boolean isItemValid(int slot, ItemStack stack) {
-                return stack.is(ModTags.Items.SYRINGES);
-            }
-
-            @Override
-            protected void onContentsChanged(int slot) {
-                CompoundTag nbt = serializeNBT(registries);
-                CustomData.update(DataComponents.CUSTOM_DATA, bagStack, tag -> {
-                    tag.put("SyringeBag", nbt);
-                });
-            }
-        };
-
-        CustomData customData = bagStack.get(DataComponents.CUSTOM_DATA);
-        if (customData != null && customData.contains("SyringeBag")) {
-            CompoundTag bagTag = customData.copyTag().getCompound("SyringeBag");
-            handler.deserializeNBT(registries, bagTag);
-        }
-
-        return handler;
+        return new MedicineBagItemHandler(bagStack, registries);
     }
 
     private void addSlots(Inventory playerInv) {
@@ -88,7 +76,7 @@ public class SyringeBagMenu extends AbstractContainerMenu {
 
         for (int row = 0; row < CONTAINER_ROWS; row++) {
             for (int col = 0; col < CONTAINER_COLS; col++) {
-                addSlot(new SlotItemHandler(handler, row * CONTAINER_COLS + col,
+                addSlot(new MedicineBagSlot(handler, row * CONTAINER_COLS + col,
                         BORDER + containerOffsetX + col * SLOT_SIZE, BORDER + row * SLOT_SIZE));
             }
         }
@@ -140,5 +128,16 @@ public class SyringeBagMenu extends AbstractContainerMenu {
     @Override
     public boolean stillValid(Player player) {
         return true;
+    }
+
+    private static final class MedicineBagSlot extends SlotItemHandler {
+        private MedicineBagSlot(IItemHandler itemHandler, int index, int xPosition, int yPosition) {
+            super(itemHandler, index, xPosition, yPosition);
+        }
+
+        @Override
+        public int getMaxStackSize(ItemStack stack) {
+            return MedicineBagItemHandler.INTERNAL_STACK_LIMIT;
+        }
     }
 }

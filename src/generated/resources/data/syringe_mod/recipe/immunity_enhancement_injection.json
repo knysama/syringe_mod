@@ -1,11 +1,16 @@
 {
-  "type": "syringe_mod:crafting_injection",
-  "category": "misc",
-  "mixture": {
-    "item": "syringe_mod:immunity_enhancement_medicine_mixture"
+  "type": "syringe_mod:potion_crafting",
+  "center": {
+    "item": "minecraft:glass_bottle"
   },
   "result": {
     "count": 1,
     "id": "syringe_mod:immunity_enhancement_injection"
+  },
+  "side_a": {
+    "item": "minecraft:milk_bucket"
+  },
+  "side_b": {
+    "item": "minecraft:glistering_melon_slice"
   }
 }

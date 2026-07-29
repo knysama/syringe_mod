@@ -13,92 +13,49 @@ import java.util.function.Supplier;
 public class ModItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(SyringeMod.MODID);
 
-    public static final DeferredItem<SyringeItem> CURE_INJECTION = registerItem("cure_injection",
-            () -> new SyringeItem(new Item.Properties()
-                    .stacksTo(16)
-                    .rarity(Rarity.RARE)
-                    .food(ModFoods.HEALING_SYRINGE),
-                    300));
+    public static final DeferredItem<AmpouleItem> CURE_INJECTION = registerItem("cure_injection",
+            () -> new AmpouleItem(new Item.Properties().rarity(Rarity.RARE), MedicineKind.CURE, 300));
 
-    public static final DeferredItem<Item> MIXED_MEDICAL_MEDICINE_MIXTURE = registerItem("mixed_medical_medicine_mixture",
-            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<AmpouleItem> STEM_CELL_INJECTION = registerItem("stem_cell_injection",
+            () -> new AmpouleItem(new Item.Properties().rarity(Rarity.RARE), MedicineKind.STEM_CELL, 400));
 
-    public static final DeferredItem<SyringeItem> STEM_CELL_INJECTION = registerItem("stem_cell_injection",
-            () -> new SyringeItem(new Item.Properties()
-                    .stacksTo(16)
-                    .rarity(Rarity.RARE)
-                    .food(ModFoods.STEM_CELL_INJECTION),
-                    400));
+    public static final DeferredItem<AmpouleItem> CELL_REPAIR_INJECTION = registerItem("cell_repair_injection",
+            () -> new AmpouleItem(new Item.Properties().rarity(Rarity.RARE), MedicineKind.CELL_REPAIR, 40));
 
-    public static final DeferredItem<SyringeItem> CELL_REPAIR_INJECTION = registerItem("cell_repair_injection",
-            () -> new SyringeItem(new Item.Properties()
-                    .stacksTo(16)
-                    .rarity(Rarity.RARE)
-                    .food(ModFoods.CELL_REPAIR_INJECTION),
-                    40));
+    public static final DeferredItem<AmpouleItem> SATURATION_METABOLISM_INJECTION = registerItem("saturation_metabolism_injection",
+            () -> new AmpouleItem(new Item.Properties().rarity(Rarity.RARE), MedicineKind.SATURATION_METABOLISM, 400));
 
-    public static final DeferredItem<Item> STEM_CELL_MEDICINE_MIXTURE = registerItem("stem_cell_medicine_mixture",
-            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<AmpouleItem> SURGE_INJECTION = registerItem("surge_injection",
+            () -> new AmpouleItem(new Item.Properties().rarity(Rarity.RARE), MedicineKind.SURGE, 400));
 
-    public static final DeferredItem<Item> CELL_REPAIR_MEDICINE_MIXTURE = registerItem("cell_repair_medicine_mixture",
-            () -> new Item(new Item.Properties()));
-
-    public static final DeferredItem<SyringeItem> SATURATION_METABOLISM_INJECTION = registerItem("saturation_metabolism_injection",
-            () -> new SyringeItem(new Item.Properties()
-                    .stacksTo(16)
-                    .rarity(Rarity.RARE)
-                    .food(ModFoods.SATURATION_METABOLISM_INJECTION),
-                    400));
-
-    public static final DeferredItem<Item> SATURATION_METABOLISM_MEDICINE_MIXTURE = registerItem("saturation_metabolism_medicine_mixture",
-            () -> new Item(new Item.Properties()));
-
-    public static final DeferredItem<SyringeItem> SURGE_INJECTION = registerItem("surge_injection",
-            () -> new SyringeItem(new Item.Properties()
-                    .stacksTo(16)
-                    .rarity(Rarity.RARE)
-                    .food(ModFoods.SURGE_INJECTION),
-                    400));
-
-    public static final DeferredItem<Item> SURGE_MEDICINE_MIXTURE = registerItem("surge_medicine_mixture",
-            () -> new Item(new Item.Properties()));
-
-    public static final DeferredItem<SyringeItem> RESISTANCE_INJECTION = registerItem("resistance_injection",
-            () -> new SyringeItem(new Item.Properties()
-                    .stacksTo(16)
-                    .rarity(Rarity.RARE)
-                    .food(ModFoods.RESISTANCE_INJECTION),
-                    400));
-
-    public static final DeferredItem<Item> RESISTANCE_MEDICINE_MIXTURE = registerItem("resistance_medicine_mixture",
-            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<AmpouleItem> RESISTANCE_INJECTION = registerItem("resistance_injection",
+            () -> new AmpouleItem(new Item.Properties().rarity(Rarity.RARE), MedicineKind.RESISTANCE, 400));
 
     public static final DeferredItem<SyringeBagItem> SYRINGE_BAG = registerItem("syringe_bag",
             () -> new SyringeBagItem(new Item.Properties()
                     .stacksTo(1)));
 
-    public static final DeferredItem<Item> X_REAGENT = registerItem("x_reagent",
-            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> JOJA_COLA = registerItem("joja_cola",
+            () -> new Item(new Item.Properties().stacksTo(16).rarity(Rarity.UNCOMMON)));
 
-    public static final DeferredItem<Item> EXPERIMENTAL_MEDICINE_MIXTURE = registerItem("experimental_medicine_mixture",
-            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<AmpouleItem> IMMUNITY_ENHANCEMENT_INJECTION = registerItem("immunity_enhancement_injection",
+            () -> new AmpouleItem(new Item.Properties().rarity(Rarity.RARE), MedicineKind.IMMUNITY_ENHANCEMENT, 400));
 
-    public static final DeferredItem<SyringeItem> IMMUNITY_ENHANCEMENT_INJECTION = registerItem("immunity_enhancement_injection",
-            () -> new ImmunitySyringeItem(new Item.Properties()
-                    .stacksTo(16)
-                    .rarity(Rarity.RARE)
-                    .food(ModFoods.IMMUNITY_ENHANCEMENT_INJECTION),
-                    400));
+    public static final DeferredItem<AmpouleItem> EXPERIMENTAL_INJECTION = registerItem("experimental_injection",
+            () -> new AmpouleItem(new Item.Properties().rarity(Rarity.RARE), MedicineKind.EXPERIMENTAL, 600));
 
-    public static final DeferredItem<Item> IMMUNITY_ENHANCEMENT_MEDICINE_MIXTURE = registerItem("immunity_enhancement_medicine_mixture",
-            () -> new Item(new Item.Properties()));
+    public static final DeferredItem<AmpouleItem> POTION_AMPOULE = registerItem("potion_ampoule",
+            () -> new AmpouleItem(new Item.Properties().rarity(Rarity.UNCOMMON), MedicineKind.VANILLA_POTION, 0));
 
-    public static final DeferredItem<SyringeItem> EXPERIMENTAL_INJECTION = registerItem("experimental_injection",
-            () -> new ExperimentalSyringeItem(new Item.Properties()
-                    .stacksTo(16)
-                    .rarity(Rarity.RARE)
-                    .food(ModFoods.EXPERIMENTAL_INJECTION),
-                    600));
+    public static final DeferredItem<InjectionGunItem> INJECTION_GUN = registerItem("injection_gun",
+            () -> new InjectionGunItem(new Item.Properties().rarity(Rarity.UNCOMMON)));
+
+    /**
+     * Client-rendering carrier for the fired needle. It is intentionally not
+     * exposed in the creative tab or recipes.
+     */
+    public static final DeferredItem<Item> INJECTION_DART = registerItem("injection_dart",
+            () -> new Item(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<BlockItem> POTION_CRAFTING_TABLE = registerItem("potion_crafting_table",
             () -> new BlockItem(ModBlocks.POTION_CRAFTING_TABLE.get(), new Item.Properties()));

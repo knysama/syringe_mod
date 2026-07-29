@@ -12,12 +12,9 @@ public class ModTags {
                 Registries.ITEM,
                 ResourceLocation.fromNamespaceAndPath(SyringeMod.MODID, "syringes"));
 
-        public static final TagKey<Item> CURIOS_INJECTION_KIT = TagKey.create(
+        public static final TagKey<Item> CURIOS_BELT = TagKey.create(
                 Registries.ITEM,
-                ResourceLocation.fromNamespaceAndPath("curios", "injection_kit"));
+                ResourceLocation.fromNamespaceAndPath("curios", "belt"));
 
-        public static final TagKey<Item> MEDICINE_MIXTURES = TagKey.create(
-                Registries.ITEM,
-                ResourceLocation.fromNamespaceAndPath(SyringeMod.MODID, "medicine_mixtures"));
     }
 }

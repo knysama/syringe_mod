@@ -1,0 +1,29 @@
+{
+  "parent": "syringe_mod:item/injection_gun_empty",
+  "overrides": [
+    {
+      "predicate": {
+        "syringe_mod:loaded": 1.0
+      },
+      "model": "syringe_mod:item/injection_gun_loaded"
+    },
+    {
+      "predicate": {
+        "syringe_mod:reload_pull": 0.25
+      },
+      "model": "syringe_mod:item/injection_gun_reload_1"
+    },
+    {
+      "predicate": {
+        "syringe_mod:reload_pull": 0.5
+      },
+      "model": "syringe_mod:item/injection_gun_reload_2"
+    },
+    {
+      "predicate": {
+        "syringe_mod:reload_pull": 0.75
+      },
+      "model": "syringe_mod:item/injection_gun_reload_3"
+    }
+  ]
+}
