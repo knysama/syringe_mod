@@ -35,7 +35,7 @@ public class PotionCraftingTableMenu extends AbstractContainerMenu {
         IItemHandler handler = be.getItemHandler(null);
 
         addSlot(new SlotItemHandler(handler, 0, SLOT_LEFT_X, ROW_INPUT_Y));
-        addSlot(new GlassBottleSlot(handler, 1, SLOT_CENTER_X, ROW_INPUT_Y));
+        addSlot(new CenterContainerSlot(handler, 1, SLOT_CENTER_X, ROW_INPUT_Y));
         addSlot(new SlotItemHandler(handler, 2, SLOT_RIGHT_X, ROW_INPUT_Y));
         addSlot(new OutputSlot(handler, 3, SLOT_OUTPUT_X, ROW_OUTPUT_Y));
 
@@ -75,7 +75,7 @@ public class PotionCraftingTableMenu extends AbstractContainerMenu {
                 return ItemStack.EMPTY;
             }
         } else {
-            boolean moved = stack.is(Items.GLASS_BOTTLE)
+            boolean moved = stack.is(Items.GLASS_BOTTLE) || stack.is(Items.POTION)
                     ? moveItemStackTo(stack, 1, 2, false)
                     : moveItemStackTo(stack, 0, 1, false)
                             || moveItemStackTo(stack, 2, 3, false);
@@ -110,14 +110,14 @@ public class PotionCraftingTableMenu extends AbstractContainerMenu {
         public boolean mayPlace(ItemStack stack) { return false; }
     }
 
-    private static class GlassBottleSlot extends SlotItemHandler {
-        public GlassBottleSlot(IItemHandler handler, int index, int x, int y) {
+    private static class CenterContainerSlot extends SlotItemHandler {
+        public CenterContainerSlot(IItemHandler handler, int index, int x, int y) {
             super(handler, index, x, y);
         }
 
         @Override
         public boolean mayPlace(ItemStack stack) {
-            return stack.is(Items.GLASS_BOTTLE);
+            return stack.is(Items.GLASS_BOTTLE) || stack.is(Items.POTION);
         }
     }
 }

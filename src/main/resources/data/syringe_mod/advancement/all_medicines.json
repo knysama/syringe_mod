@@ -17,7 +17,8 @@
     "surge": {"trigger": "minecraft:impossible"},
     "resistance": {"trigger": "minecraft:impossible"},
     "immunity_enhancement": {"trigger": "minecraft:impossible"},
-    "experimental": {"trigger": "minecraft:impossible"}
+    "experimental": {"trigger": "minecraft:impossible"},
+    "vodka": {"trigger": "minecraft:impossible"}
   },
   "requirements": [
     ["cure"],
@@ -27,6 +28,7 @@
     ["surge"],
     ["resistance"],
     ["immunity_enhancement"],
-    ["experimental"]
+    ["experimental"],
+    ["vodka"]
   ]
 }

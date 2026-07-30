@@ -8,6 +8,7 @@
   "item.syringe_mod.resistance_injection": "機體抗性安瓿",
   "item.syringe_mod.joja_cola": "Joja可樂",
   "item.syringe_mod.experimental_injection": "X 藥劑",
+  "item.syringe_mod.vodka": "伏特加",
   "item.syringe_mod.immunity_enhancement_injection": "免疫增強安瓿",
   "item.syringe_mod.syringe_bag": "藥劑包",
   "item.syringe_mod.potion_ampoule": "藥水安瓿",
@@ -27,6 +28,7 @@
   "screen.syringe_mod.ampoule_wheel.page": "%s / %s",
   "screen.syringe_mod.ampoule_wheel.empty": "沒有可用藥劑",
   "tooltip.syringe_mod.experimental_injection.flavor": "為未來而戰吧",
+  "tooltip.syringe_mod.vodka.flavor": "блядь",
   "tooltip.syringe_mod.injection_gun.empty": "未裝填",
   "tooltip.syringe_mod.injection_gun.loaded": "已裝填：%s",
   "tooltip.syringe_mod.injection_gun.capacity": "剩餘施藥次數：%s / %s",
@@ -43,7 +45,7 @@
   "advancement.syringe_mod.x_reagent.title": "那就戰個未來吧",
   "advancement.syringe_mod.x_reagent.description": "製作出X藥劑",
   "advancement.syringe_mod.all_medicines.title": "那我問你那我問你",
-  "advancement.syringe_mod.all_medicines.description": "注射全部八種模組藥劑",
+  "advancement.syringe_mod.all_medicines.description": "注射全部九種模組藥劑",
   "advancement.syringe_mod.joja_member.title": "Joja公司年度會員",
   "advancement.syringe_mod.joja_member.description": "在藥劑混合台中用劇毒藥水和虛弱藥水混合出Joja可樂"
 }

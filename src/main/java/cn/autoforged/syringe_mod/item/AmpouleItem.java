@@ -68,5 +68,10 @@ public class AmpouleItem extends Item {
                             "tooltip.syringe_mod.experimental_injection.flavor")
                     .withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC));
         }
+        if (medicineKind == MedicineKind.VODKA) {
+            tooltipComponents.add(Component.translatable(
+                            "tooltip.syringe_mod.vodka.flavor")
+                    .withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC));
+        }
     }
 }

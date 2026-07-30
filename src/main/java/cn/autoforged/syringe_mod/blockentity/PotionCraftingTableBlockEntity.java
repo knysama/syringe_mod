@@ -50,7 +50,9 @@ public class PotionCraftingTableBlockEntity extends BlockEntity implements MenuP
         @Override
         public boolean isItemValid(int slot, ItemStack stack) {
             if (slot == SLOT_OUTPUT) return false;
-            if (slot == SLOT_CENTER_INPUT) return stack.is(Items.GLASS_BOTTLE);
+            if (slot == SLOT_CENTER_INPUT) {
+                return stack.is(Items.GLASS_BOTTLE) || stack.is(Items.POTION);
+            }
             return super.isItemValid(slot, stack);
         }
     };

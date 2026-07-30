@@ -44,6 +44,9 @@ public class ModItems {
     public static final DeferredItem<AmpouleItem> EXPERIMENTAL_INJECTION = registerItem("experimental_injection",
             () -> new AmpouleItem(new Item.Properties().rarity(Rarity.RARE), MedicineKind.EXPERIMENTAL, 600));
 
+    public static final DeferredItem<AmpouleItem> VODKA = registerItem("vodka",
+            () -> new AmpouleItem(new Item.Properties().rarity(Rarity.UNCOMMON), MedicineKind.VODKA, 0));
+
     public static final DeferredItem<AmpouleItem> POTION_AMPOULE = registerItem("potion_ampoule",
             () -> new AmpouleItem(new Item.Properties().rarity(Rarity.UNCOMMON), MedicineKind.VANILLA_POTION, 0));
 

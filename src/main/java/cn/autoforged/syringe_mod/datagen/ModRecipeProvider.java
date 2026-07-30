@@ -37,6 +37,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     @Override
     protected void buildRecipes(RecipeOutput output) {
         savePotionAmpouleRecipe(output);
+        saveVodkaRecipe(output);
         saveInjectionGunRecipe(output);
 
         // The crafting table now fills ampoules directly. There is no
@@ -98,6 +99,29 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 output.advancement()
                         .addCriterion("has_potion", has(Items.POTION))
                         .addCriterion("has_glass_bottle", has(Items.GLASS_BOTTLE))
+                        .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(id))
+                        .rewards(AdvancementRewards.Builder.recipe(id))
+                        .requirements(AdvancementRequirements.Strategy.OR)
+                        .build(id.withPrefix("recipes/")));
+    }
+
+    private void saveVodkaRecipe(RecipeOutput output) {
+        ResourceLocation id = id("vodka");
+        output.accept(
+                id,
+                new PotionCraftingRecipe(
+                        DataComponentIngredient.of(
+                                false,
+                                DataComponents.POTION_CONTENTS,
+                                new PotionContents(Potions.WATER),
+                                Items.POTION),
+                        Ingredient.of(Items.POTATO, Items.POISONOUS_POTATO),
+                        Ingredient.EMPTY,
+                        new ItemStack(ModItems.VODKA.get())),
+                output.advancement()
+                        .addCriterion("has_potato", has(Items.POTATO))
+                        .addCriterion("has_poisonous_potato", has(Items.POISONOUS_POTATO))
+                        .addCriterion("has_water_bottle", has(Items.POTION))
                         .addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(id))
                         .rewards(AdvancementRewards.Builder.recipe(id))
                         .requirements(AdvancementRequirements.Strategy.OR)

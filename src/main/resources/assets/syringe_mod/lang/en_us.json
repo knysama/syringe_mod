@@ -8,6 +8,7 @@
   "item.syringe_mod.resistance_injection": "Resistance Ampoule",
   "item.syringe_mod.joja_cola": "Joja Cola",
   "item.syringe_mod.experimental_injection": "X Ampoule",
+  "item.syringe_mod.vodka": "Vodka",
   "item.syringe_mod.immunity_enhancement_injection": "Immunity Enhancement Ampoule",
   "item.syringe_mod.syringe_bag": "Medicine Bag",
   "item.syringe_mod.potion_ampoule": "Potion Ampoule",
@@ -32,6 +33,7 @@
   "screen.syringe_mod.ampoule_wheel.empty": "No medicine available",
 
   "tooltip.syringe_mod.experimental_injection.flavor": "Let's fight for the future.",
+  "tooltip.syringe_mod.vodka.flavor": "блядь",
   "tooltip.syringe_mod.injection_gun.empty": "Empty",
   "tooltip.syringe_mod.injection_gun.loaded": "Loaded: %s",
   "tooltip.syringe_mod.injection_gun.capacity": "Doses remaining: %s / %s",
@@ -50,7 +52,7 @@
   "advancement.syringe_mod.x_reagent.title": "How About We Fight the Future a Bit?",
   "advancement.syringe_mod.x_reagent.description": "Produce the X reagent",
   "advancement.syringe_mod.all_medicines.title": "Bro, Lemme Ask You\u2014Lemme Ask You...",
-  "advancement.syringe_mod.all_medicines.description": "Inject all eight modded medicines",
+  "advancement.syringe_mod.all_medicines.description": "Inject all nine modded medicines",
   "advancement.syringe_mod.joja_member.title": "Joja Co. Member Of The Year",
   "advancement.syringe_mod.joja_member.description": "Mix a poison potion and a weakness potion into Joja Cola"
 }

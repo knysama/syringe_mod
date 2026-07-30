@@ -31,6 +31,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.RESISTANCE_INJECTION.get())
                 .add(ModItems.EXPERIMENTAL_INJECTION.get())
                 .add(ModItems.IMMUNITY_ENHANCEMENT_INJECTION.get())
+                .add(ModItems.VODKA.get())
                 .add(ModItems.POTION_AMPOULE.get());
 
         tag(ModTags.Items.CURIOS_BELT)

@@ -36,6 +36,11 @@ public final class InjectionGunClientSetup {
                 ModItems.POTION_AMPOULE.get());
         event.register(
                 (stack, tintIndex) -> tintIndex == 0
+                        ? FastColor.ARGB32.opaque(AmpouleColors.color(stack))
+                        : -1,
+                ModItems.VODKA.get());
+        event.register(
+                (stack, tintIndex) -> tintIndex == 0
                         ? FastColor.ARGB32.opaque(AmpouleColors.color(
                                 InjectionGunItem.getLoadedAmpoule(stack)))
                         : -1,

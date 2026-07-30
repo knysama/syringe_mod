@@ -11,7 +11,7 @@ import net.neoforged.neoforge.items.ItemStackHandler;
 
 public class MedicineBagItemHandler extends ComponentItemHandler {
     public static final int SLOT_COUNT = 9;
-    public static final int INTERNAL_STACK_LIMIT = 64;
+    public static final int INTERNAL_STACK_LIMIT = 16;
     private static final String LEGACY_ROOT = "SyringeBag";
 
     public MedicineBagItemHandler(ItemStack bagStack, HolderLookup.Provider registries) {
@@ -43,7 +43,8 @@ public class MedicineBagItemHandler extends ComponentItemHandler {
             return toInsert;
         }
 
-        int room = INTERNAL_STACK_LIMIT - existing.getCount();
+        int stackLimit = Math.min(INTERNAL_STACK_LIMIT, toInsert.getMaxStackSize());
+        int room = stackLimit - existing.getCount();
         if (room <= 0) {
             return toInsert;
         }

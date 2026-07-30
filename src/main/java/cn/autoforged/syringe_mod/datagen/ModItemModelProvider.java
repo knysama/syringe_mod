@@ -23,6 +23,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.RESISTANCE_INJECTION.get());
         basicItem(ModItems.EXPERIMENTAL_INJECTION.get());
         basicItem(ModItems.IMMUNITY_ENHANCEMENT_INJECTION.get());
+        withExistingParent(ModItems.VODKA.getId().getPath(), mcLoc("item/generated"))
+                .texture("layer0", modLoc("item/potion_ampoule_liquid"))
+                .texture("layer1", modLoc("item/potion_ampoule_glass"));
         withExistingParent(ModItems.POTION_AMPOULE.getId().getPath(), mcLoc("item/generated"))
                 .texture("layer0", modLoc("item/potion_ampoule_liquid"))
                 .texture("layer1", modLoc("item/potion_ampoule_glass"));

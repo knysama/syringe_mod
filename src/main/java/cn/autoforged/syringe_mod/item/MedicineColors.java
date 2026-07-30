@@ -22,6 +22,7 @@ public final class MedicineColors {
             case RESISTANCE -> 0x607487;
             case IMMUNITY_ENHANCEMENT -> 0x667B58;
             case EXPERIMENTAL -> 0x171D2B;
+            case VODKA -> 0xD9EEF2;
             case VANILLA_POTION -> ampoule.getOrDefault(
                     DataComponents.POTION_CONTENTS,
                     PotionContents.EMPTY).getColor();

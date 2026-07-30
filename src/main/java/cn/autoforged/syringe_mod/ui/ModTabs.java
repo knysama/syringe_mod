@@ -30,6 +30,7 @@ public class ModTabs {
                         output.accept(ModItems.RESISTANCE_INJECTION.get());
                         output.accept(ModItems.IMMUNITY_ENHANCEMENT_INJECTION.get());
                         output.accept(ModItems.EXPERIMENTAL_INJECTION.get());
+                        output.accept(ModItems.VODKA.get());
                         output.accept(ModItems.POTION_AMPOULE.get());
 
                         // Equipment and work blocks.

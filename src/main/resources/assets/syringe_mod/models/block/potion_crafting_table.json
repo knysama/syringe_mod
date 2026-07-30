@@ -13,7 +13,8 @@
     "21": "syringe_mod:block/pct_liquid_blue",
     "22": "syringe_mod:block/pct_liquid_purple",
     "23": "syringe_mod:block/pct_liquid_black",
-    "39": "syringe_mod:block/potion_crafting_table_surface",
+    "32": "syringe_mod:block/pct_panel_edge",
+    "39": "syringe_mod:block/pct_table_mottled",
     "51": "syringe_mod:block/potion_crafting_table_surface",
     "52": "syringe_mod:block/potion_crafting_table_trim",
     "53": "syringe_mod:block/potion_crafting_table_panel",
@@ -28,12 +29,12 @@
       "from": [
         0.5,
         1,
-        0.75
+        2
       ],
       "to": [
         15.5,
         7.5,
-        15
+        14
       ],
       "rotation": {
         "angle": 0,
@@ -106,12 +107,12 @@
       "from": [
         0,
         7,
-        0.5
+        1.75
       ],
       "to": [
         16,
         8,
-        15.5
+        14.25
       ],
       "rotation": {
         "angle": 0,
@@ -184,12 +185,12 @@
       "from": [
         0.5,
         0.75,
-        0.75
+        2
       ],
       "to": [
         15.5,
         1.25,
-        15
+        14
       ],
       "rotation": {
         "angle": 0,
@@ -262,12 +263,12 @@
       "from": [
         0,
         0,
-        0.5
+        1.5
       ],
       "to": [
         1.5,
         1.25,
-        2
+        3
       ],
       "rotation": {
         "angle": 0,
@@ -340,12 +341,12 @@
       "from": [
         14.5,
         0,
-        0.5
+        1.5
       ],
       "to": [
         16,
         1.25,
-        2
+        3
       ],
       "rotation": {
         "angle": 0,
@@ -418,12 +419,12 @@
       "from": [
         0,
         0,
-        13.5
+        13
       ],
       "to": [
         1.5,
         1.25,
-        15
+        14.5
       ],
       "rotation": {
         "angle": 0,
@@ -496,12 +497,12 @@
       "from": [
         14.5,
         0,
-        13.5
+        13
       ],
       "to": [
         16,
         1.25,
-        15
+        14.5
       ],
       "rotation": {
         "angle": 0,
@@ -574,12 +575,12 @@
       "from": [
         1,
         6,
-        0.35
+        1.5
       ],
       "to": [
         15,
         6.5,
-        0.85
+        2
       ],
       "rotation": {
         "angle": 0,
@@ -652,12 +653,12 @@
       "from": [
         1,
         1.5,
-        0.35
+        1.5
       ],
       "to": [
         15,
         2,
-        0.85
+        2
       ],
       "rotation": {
         "angle": 0,
@@ -730,12 +731,12 @@
       "from": [
         1,
         2,
-        0.35
+        1.5
       ],
       "to": [
         1.5,
         6,
-        0.85
+        2
       ],
       "rotation": {
         "angle": 0,
@@ -808,12 +809,12 @@
       "from": [
         14.5,
         2,
-        0.35
+        1.5
       ],
       "to": [
         15,
         6,
-        0.85
+        2
       ],
       "rotation": {
         "angle": 0,
@@ -886,12 +887,12 @@
       "from": [
         1.5,
         2,
-        0.45
+        1.6
       ],
       "to": [
         14.5,
         6,
-        0.6
+        1.75
       ],
       "rotation": {
         "angle": 0,
@@ -964,12 +965,12 @@
       "from": [
         7.2,
         3,
-        0.2
+        1.25
       ],
       "to": [
         8.8,
         5.2,
-        0.55
+        1.6
       ],
       "rotation": {
         "angle": 0,
@@ -1042,12 +1043,12 @@
       "from": [
         7.55,
         3.45,
-        0.05
+        1.05
       ],
       "to": [
         8.45,
         4.75,
-        0.2
+        1.25
       ],
       "rotation": {
         "angle": 0,
@@ -1120,12 +1121,12 @@
       "from": [
         10.8,
         2.35,
-        0.05
+        1.05
       ],
       "to": [
         11.55,
         2.95,
-        0.2
+        1.25
       ],
       "rotation": {
         "angle": 0,
@@ -1198,12 +1199,12 @@
       "from": [
         15.5,
         2,
-        2.5
+        4
       ],
       "to": [
         15.8,
         6,
-        13.5
+        12
       ],
       "rotation": {
         "angle": 0,
@@ -1336,7 +1337,7 @@
             5.5,
             5.5
           ],
-          "texture": "#55"
+          "texture": "#32"
         },
         "down": {
           "uv": [
@@ -5956,7 +5957,7 @@
     "thirdperson_righthand": {
       "rotation": [
         30,
-        180,
+        0,
         0
       ],
       "scale": [
@@ -5968,47 +5969,13 @@
     "thirdperson_lefthand": {
       "rotation": [
         30,
-        180,
+        0,
         0
       ],
       "scale": [
         0.3,
         0.3,
         0.3
-      ]
-    },
-    "firstperson_righthand": {
-      "rotation": [
-        20,
-        180,
-        0
-      ],
-      "translation": [
-        0,
-        1,
-        0
-      ],
-      "scale": [
-        0.4,
-        0.4,
-        0.4
-      ]
-    },
-    "firstperson_lefthand": {
-      "rotation": [
-        20,
-        180,
-        0
-      ],
-      "translation": [
-        0,
-        1,
-        0
-      ],
-      "scale": [
-        0.4,
-        0.4,
-        0.4
       ]
     },
     "gui": {
@@ -6024,15 +5991,17 @@
       ]
     },
     "fixed": {
-      "rotation": [
-        0,
-        180,
-        0
-      ],
       "translation": [
         0,
         0,
         -4.25
+      ]
+    },
+    "on_shelf": {
+      "rotation": [
+        0,
+        -180,
+        0
       ]
     }
   },

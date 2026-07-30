@@ -9,5 +9,6 @@ public enum MedicineKind {
     RESISTANCE,
     IMMUNITY_ENHANCEMENT,
     EXPERIMENTAL,
+    VODKA,
     VANILLA_POTION
 }

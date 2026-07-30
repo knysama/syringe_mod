@@ -45,7 +45,8 @@ public final class MedicineEffectService {
             if (ampoule.useCooldown() > 0) {
                 targetPlayer.getCooldowns().addCooldown(ampoule, ampoule.useCooldown());
             }
-            if (targetPlayer.getRandom().nextFloat() < 0.5F) {
+            if (ampoule.medicineKind() != MedicineKind.VODKA
+                    && targetPlayer.getRandom().nextFloat() < 0.5F) {
                 targetPlayer.addEffect(new MobEffectInstance(MobEffects.HUNGER, 200, 0));
                 sideEffectApplied = true;
             }
@@ -97,6 +98,18 @@ public final class MedicineEffectService {
                     applyEffect(source, target, new MobEffectInstance(MobEffects.ABSORPTION, 1800, 1));
                     applyEffect(source, target, new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 1800, 1));
                     applyEffect(source, target, new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 1800, 0));
+                }
+            }
+            case VODKA -> {
+                float roll = target.getRandom().nextFloat();
+                if (roll < 0.45F) {
+                    applyEffect(source, target, new MobEffectInstance(MobEffects.DIG_SPEED, 600, 2));
+                } else if (roll < 0.85F) {
+                    applyEffect(source, target, new MobEffectInstance(MobEffects.CONFUSION, 400, 1));
+                } else if (roll < 0.95F) {
+                    applyEffect(source, target, new MobEffectInstance(MobEffects.POISON, 400, 0));
+                } else {
+                    target.hurt(target.damageSources().genericKill(), Float.MAX_VALUE);
                 }
             }
             case VANILLA_POTION -> {
