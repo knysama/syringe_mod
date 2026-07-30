@@ -153,15 +153,13 @@ public final class ClientGunAnimations {
                     (player.getTicksUsingItem() + partialTick) / 5.0F,
                     0.0F, 1.0F));
             poseStack.translate(
-                    -0.33D * side * aim,
-                    -0.075D * aim,
+                    -0.48D * side * aim,
+                    0.02D * aim,
                     -0.24D * aim);
-            // Keep the receiver level while aiming. The previous negative
-            // X rotation raised the muzzle above the crosshair and made the
-            // first-person view feel like the player was lifting their head.
-            poseStack.mulPose(Axis.XP.rotationDegrees(0.75F * aim));
-            poseStack.mulPose(Axis.YP.rotationDegrees(-2.5F * side * aim));
-            poseStack.mulPose(Axis.ZP.rotationDegrees(0.5F * side * aim));
+            // The model's first-person display rotates Z by -20 degrees before
+            // turning its long axis forward with Y=-90. In camera space that
+            // becomes a 20-degree upward pitch, so cancel it on the view X axis.
+            poseStack.mulPose(Axis.XP.rotationDegrees(-20.0F * aim));
             return true;
         }
         return false;
@@ -170,6 +168,11 @@ public final class ClientGunAnimations {
     public static InjectionGunAction actionFor(LivingEntity living) {
         AnimationState state = ACTIVE.get(living.getId());
         return state == null ? null : state.action;
+    }
+
+    public static float actionProgressTicks(LivingEntity living) {
+        AnimationState state = ACTIVE.get(living.getId());
+        return state == null ? 0.0F : state.progressTicks(0.0F);
     }
 
     public static float reloadModelPull(LivingEntity living) {
@@ -257,6 +260,10 @@ public final class ClientGunAnimations {
         poseStack.mulPose(Axis.XP.rotationDegrees(-18.0F * pose));
         poseStack.mulPose(Axis.YP.rotationDegrees(-24.0F * side * pose));
         poseStack.mulPose(Axis.ZP.rotationDegrees(-66.0F * side * pose));
+        // SELF_INJECT and QUICK_INJECT both administer the loaded dose to the
+        // player. Turn the model end-for-end as it is raised so the needle,
+        // rather than the plunger, is the end that reaches the body.
+        poseStack.mulPose(Axis.YP.rotationDegrees(180.0F * pose));
     }
 
     private static float selfPoseAmount(float ticks) {

@@ -34,6 +34,8 @@
   "subtitles.syringe_mod.injection": "注射槍注射",
   "recipe_type.syringe_mod.potion_crafting": "藥劑製作",
   "recipe_type.syringe_mod.potion_mixing": "藥劑混合",
+  "emi.category.syringe_mod.potion_crafting": "藥劑製作",
+  "emi.category.syringe_mod.potion_mixing": "藥劑混合",
   "advancement.syringe_mod.root.title": "注射體系",
   "advancement.syringe_mod.root.description": "開始使用注射槍與藥劑設備",
   "advancement.syringe_mod.side_effect.title": "九尾雞的亂狂",

@@ -41,6 +41,8 @@
 
   "recipe_type.syringe_mod.potion_crafting": "药水制作",
   "recipe_type.syringe_mod.potion_mixing": "药水混合",
+  "emi.category.syringe_mod.potion_crafting": "药剂制作",
+  "emi.category.syringe_mod.potion_mixing": "药剂混合",
   "advancement.syringe_mod.root.title": "注射体系",
   "advancement.syringe_mod.root.description": "开始使用注射枪与药剂设备",
   "advancement.syringe_mod.side_effect.title": "九尾鸡的乱狂",

@@ -28,12 +28,12 @@ public class PotionMixingTableScreen extends AbstractContainerScreen<PotionMixin
     private static final ResourceLocation BORDER_LEFT = guiTexture("border_edge_left");
     private static final ResourceLocation BORDER_RIGHT = guiTexture("border_edge_right");
 
-    private static final int WIDTH = 248;
-    private static final int HEIGHT = 269;
-    private static final int WORK_TOP = 25;
-    private static final int WORK_BOTTOM = 153;
-    private static final int SPLIT_Y = 162;
-    private static final int PLAYER_INV_TOP = 184;
+    private static final int WIDTH = 198;
+    private static final int HEIGHT = 220;
+    private static final int WORK_TOP = 23;
+    private static final int WORK_BOTTOM = 116;
+    private static final int SPLIT_Y = 120;
+    private static final int PLAYER_INV_TOP = 141;
 
     private static final int ENAMEL_LIGHT = 0xFFE4E5E1;
     private static final int ENAMEL_MID = 0xFFBEC3C2;
@@ -55,8 +55,8 @@ public class PotionMixingTableScreen extends AbstractContainerScreen<PotionMixin
         this.imageHeight = HEIGHT;
         this.titleLabelX = 11;
         this.titleLabelY = 8;
-        this.inventoryLabelX = 43;
-        this.inventoryLabelY = 172;
+        this.inventoryLabelX = 18;
+        this.inventoryLabelY = 129;
     }
 
     @Override
@@ -99,8 +99,8 @@ public class PotionMixingTableScreen extends AbstractContainerScreen<PotionMixin
                 x + WIDTH - 5, y + 5, 0, 0, 5, HEIGHT - 10, 5, 1);
 
         // Recessed header strip from the approved concept, kept clear for the title.
-        graphics.fill(x + 10, y + 19, x + 93, y + 22, ENAMEL_SHADOW);
-        graphics.fill(x + 12, y + 19, x + 91, y + 20, ENAMEL_LIGHT);
+        graphics.fill(x + 10, y + 18, x + 82, y + 21, ENAMEL_SHADOW);
+        graphics.fill(x + 12, y + 18, x + 80, y + 19, ENAMEL_LIGHT);
     }
 
     private void drawWorkArea(GuiGraphics graphics, int x, int y) {
@@ -111,18 +111,18 @@ public class PotionMixingTableScreen extends AbstractContainerScreen<PotionMixin
 
         int flowColor = this.menu.isOutputBlocked() ? BLOCKED : CYAN_DARK;
         // Twin reagent channels into the centrifuge.
-        channel(graphics, x + 49, y + 55, x + 75, y + 59, flowColor);
-        channel(graphics, x + 49, y + 103, x + 75, y + 107, flowColor);
+        channel(graphics, x + 43, y + 47, x + 51, y + 51, flowColor);
+        channel(graphics, x + 43, y + 82, x + 51, y + 86, flowColor);
 
         drawCentrifuge(graphics, x, y);
 
         // Output channel and isolated product bay.
-        channel(graphics, x + 177, y + 76, x + 198, y + 80, flowColor);
-        graphics.fill(x + 195, y + 73, x + 199, y + 83, flowColor);
+        channel(graphics, x + 142, y + 63, x + 151, y + 67, flowColor);
+        graphics.fill(x + 148, y + 60, x + 152, y + 70, flowColor);
 
-        bevel(graphics, x + 196, y + 42, x + 236, y + 105);
-        graphics.fill(x + 200, y + 46, x + 232, y + 101, PANEL);
-        graphics.fill(x + 203, y + 49, x + 229, y + 92, PANEL_DARK);
+        bevel(graphics, x + 148, y + 35, x + 190, y + 99);
+        graphics.fill(x + 152, y + 39, x + 186, y + 95, PANEL);
+        graphics.fill(x + 155, y + 42, x + 183, y + 88, PANEL_DARK);
         Slot output = this.menu.slots.get(2);
         graphics.blit(
                 SLOT_TEXTURE,
@@ -130,9 +130,9 @@ public class PotionMixingTableScreen extends AbstractContainerScreen<PotionMixin
                 0, 0,
                 18, 18,
                 18, 18);
-        graphics.fill(x + 203, y + 95, x + 229, y + 100, PANEL_DARK);
+        graphics.fill(x + 155, y + 90, x + 183, y + 94, PANEL_DARK);
         graphics.fill(
-                x + 206, y + 96, x + 226, y + 99,
+                x + 158, y + 91, x + 180, y + 93,
                 this.menu.isOutputBlocked() ? BLOCKED : CYAN);
 
         drawProgressRail(graphics, x, y);
@@ -141,12 +141,12 @@ public class PotionMixingTableScreen extends AbstractContainerScreen<PotionMixin
     private void drawInputBay(
             GuiGraphics graphics, int x, int y, int slotIndex, int medicineColor) {
         Slot slot = this.menu.slots.get(slotIndex);
-        int bayTop = slotIndex == 0 ? 38 : 86;
+        int bayTop = slotIndex == 0 ? 30 : 65;
 
-        bevel(graphics, x + 13, y + bayTop, x + 58, y + bayTop + 39);
-        graphics.fill(x + 17, y + bayTop + 4, x + 54, y + bayTop + 35, PANEL);
-        graphics.fill(x + 20, y + bayTop + 7, x + 49, y + bayTop + 32, PANEL_DARK);
-        graphics.fill(x + 19, y + bayTop + 8, x + 22, y + bayTop + 31, medicineColor);
+        bevel(graphics, x + 8, y + bayTop, x + 47, y + bayTop + 32);
+        graphics.fill(x + 12, y + bayTop + 4, x + 43, y + bayTop + 28, PANEL);
+        graphics.fill(x + 15, y + bayTop + 7, x + 40, y + bayTop + 25, PANEL_DARK);
+        graphics.fill(x + 14, y + bayTop + 8, x + 17, y + bayTop + 24, medicineColor);
 
         graphics.blit(
                 SLOT_TEXTURE,
@@ -156,8 +156,8 @@ public class PotionMixingTableScreen extends AbstractContainerScreen<PotionMixin
                 18, 18);
 
         // Small connector block prevents the inputs from reading as loose slots.
-        graphics.fill(x + 49, y + bayTop + 15, x + 62, y + bayTop + 24, PANEL);
-        graphics.fill(x + 52, y + bayTop + 18, x + 62, y + bayTop + 21, CYAN_DARK);
+        graphics.fill(x + 43, y + bayTop + 12, x + 52, y + bayTop + 21, PANEL);
+        graphics.fill(x + 45, y + bayTop + 15, x + 52, y + bayTop + 18, CYAN_DARK);
     }
 
     private void drawCentrifuge(GuiGraphics graphics, int x, int y) {
@@ -165,40 +165,40 @@ public class PotionMixingTableScreen extends AbstractContainerScreen<PotionMixin
         int maxProgress = this.menu.getMaxProgress();
         boolean running = progress > 0 && maxProgress > 0;
 
-        bevel(graphics, x + 72, y + 31, x + 179, y + 132);
-        graphics.fill(x + 77, y + 36, x + 174, y + 127, PANEL);
-        graphics.fill(x + 82, y + 41, x + 169, y + 122, PANEL_DARK);
-        graphics.fill(x + 87, y + 46, x + 164, y + 117, PANEL_INSET);
+        bevel(graphics, x + 48, y + 25, x + 144, y + 102);
+        graphics.fill(x + 53, y + 30, x + 139, y + 97, PANEL);
+        graphics.fill(x + 58, y + 35, x + 134, y + 92, PANEL_DARK);
+        graphics.fill(x + 63, y + 40, x + 129, y + 87, PANEL_INSET);
 
-        int centerX = x + 125;
-        int centerY = y + 81;
+        int centerX = x + 96;
+        int centerY = y + 64;
         int phase = running ? (progress * 8 / maxProgress) & 3 : 0;
         int rotorColor = running ? CYAN_DARK : ROTOR;
 
         if ((phase & 1) == 0) {
-            graphics.fill(centerX - 28, centerY - 4, centerX + 28, centerY + 4, rotorColor);
-            graphics.fill(centerX - 4, centerY - 25, centerX + 4, centerY + 25, rotorColor);
+            graphics.fill(centerX - 23, centerY - 3, centerX + 23, centerY + 3, rotorColor);
+            graphics.fill(centerX - 3, centerY - 20, centerX + 3, centerY + 20, rotorColor);
         } else {
-            graphics.fill(centerX - 23, centerY - 19, centerX - 11, centerY - 12, rotorColor);
-            graphics.fill(centerX + 11, centerY - 19, centerX + 23, centerY - 12, rotorColor);
-            graphics.fill(centerX - 23, centerY + 12, centerX - 11, centerY + 19, rotorColor);
-            graphics.fill(centerX + 11, centerY + 12, centerX + 23, centerY + 19, rotorColor);
+            graphics.fill(centerX - 19, centerY - 16, centerX - 9, centerY - 10, rotorColor);
+            graphics.fill(centerX + 9, centerY - 16, centerX + 19, centerY - 10, rotorColor);
+            graphics.fill(centerX - 19, centerY + 10, centerX - 9, centerY + 16, rotorColor);
+            graphics.fill(centerX + 9, centerY + 10, centerX + 19, centerY + 16, rotorColor);
         }
 
         graphics.fill(centerX - 8, centerY - 8, centerX + 8, centerY + 8, ROTOR);
         graphics.fill(centerX - 4, centerY - 4, centerX + 4, centerY + 4, ENAMEL_MID);
 
         int brightCyan = running ? CYAN_LIGHT : CYAN;
-        sample(graphics, centerX, centerY - 27, brightCyan);
-        sample(graphics, centerX + 30, centerY, CYAN);
-        sample(graphics, centerX, centerY + 27, PURPLE);
-        sample(graphics, centerX - 30, centerY, PURPLE);
+        sample(graphics, centerX, centerY - 22, brightCyan);
+        sample(graphics, centerX + 25, centerY, CYAN);
+        sample(graphics, centerX, centerY + 22, PURPLE);
+        sample(graphics, centerX - 25, centerY, PURPLE);
 
         // Lid status bar above the chamber.
-        graphics.fill(x + 96, y + 28, x + 154, y + 35, PANEL);
+        graphics.fill(x + 71, y + 22, x + 121, y + 29, PANEL);
         for (int index = 0; index < 5; index++) {
-            int lampX = x + 101 + index * 10;
-            graphics.fill(lampX, y + 30, lampX + 6, y + 33, running ? CYAN : CYAN_DARK);
+            int lampX = x + 75 + index * 9;
+            graphics.fill(lampX, y + 24, lampX + 6, y + 27, running ? CYAN : CYAN_DARK);
         }
     }
 
@@ -208,29 +208,29 @@ public class PotionMixingTableScreen extends AbstractContainerScreen<PotionMixin
         boolean blocked = this.menu.isOutputBlocked();
 
         // Fast-process control motif at the left and ventilation motif at right.
-        bevel(graphics, x + 19, y + 136, x + 45, y + 151);
-        graphics.fill(x + 25, y + 140, x + 29, y + 147, CYAN);
-        graphics.fill(x + 30, y + 140, x + 34, y + 147, CYAN);
-        graphics.fill(x + 35, y + 140, x + 39, y + 147, CYAN);
+        bevel(graphics, x + 10, y + 103, x + 40, y + 115);
+        graphics.fill(x + 16, y + 106, x + 20, y + 112, CYAN);
+        graphics.fill(x + 21, y + 106, x + 25, y + 112, CYAN);
+        graphics.fill(x + 26, y + 106, x + 30, y + 112, CYAN);
 
-        graphics.fill(x + 49, y + 136, x + 199, y + 151, ENAMEL_SHADOW);
-        graphics.fill(x + 52, y + 139, x + 196, y + 148, PANEL);
-        graphics.fill(x + 55, y + 141, x + 193, y + 146, PANEL_DARK);
-        int filled = maxProgress > 0 ? 136 * progress / maxProgress : 0;
+        graphics.fill(x + 43, y + 103, x + 157, y + 115, ENAMEL_SHADOW);
+        graphics.fill(x + 46, y + 106, x + 154, y + 112, PANEL);
+        graphics.fill(x + 49, y + 108, x + 151, y + 111, PANEL_DARK);
+        int filled = maxProgress > 0 ? 100 * progress / maxProgress : 0;
         if (filled > 0) {
             graphics.fill(
-                    x + 56, y + 142, x + 56 + filled, y + 145,
+                    x + 50, y + 109, x + 50 + filled, y + 111,
                     blocked ? BLOCKED : CYAN);
         }
         for (int divider = 1; divider < 10; divider++) {
-            int dividerX = x + 56 + divider * 14;
-            graphics.fill(dividerX, y + 140, dividerX + 1, y + 147, PANEL);
+            int dividerX = x + 50 + divider * 10;
+            graphics.fill(dividerX, y + 107, dividerX + 1, y + 112, PANEL);
         }
 
-        bevel(graphics, x + 203, y + 136, x + 229, y + 151);
-        graphics.fill(x + 210, y + 139, x + 222, y + 148, PANEL_DARK);
-        graphics.fill(x + 215, y + 140, x + 217, y + 147, ROTOR);
-        graphics.fill(x + 211, y + 143, x + 221, y + 145, ROTOR);
+        bevel(graphics, x + 160, y + 103, x + 188, y + 115);
+        graphics.fill(x + 166, y + 106, x + 182, y + 112, PANEL_DARK);
+        graphics.fill(x + 173, y + 106, x + 175, y + 112, ROTOR);
+        graphics.fill(x + 168, y + 108, x + 180, y + 110, ROTOR);
     }
 
     private static void sample(GuiGraphics graphics, int centerX, int centerY, int color) {

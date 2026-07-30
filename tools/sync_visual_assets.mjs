@@ -206,6 +206,76 @@ function syncMixingLid() {
   writeJson(activePath, active);
 }
 
+function syncMixingDepthSafety() {
+  const stainTopByName = new Map([
+    ["stain_purple_puddle_a", 8.032],
+    ["stain_purple_puddle_b", 8.044],
+    ["stain_purple_puddle_c", 8.056],
+    ["stain_purple_tail", 8.068],
+    ["stain_purple_drop_far", 8.08],
+    ["stain_purple_drop_small", 8.092],
+    ["stain_cyan_puddle_a", 8.032],
+    ["stain_cyan_puddle_b", 8.044],
+    ["stain_cyan_puddle_c", 8.056],
+    ["stain_cyan_tail", 8.068],
+    ["stain_cyan_drop_far", 8.08],
+    ["stain_cyan_drop_left", 8.092],
+    ["stain_cyan_drop_top", 8.104],
+  ]);
+
+  for (const fileName of [
+    "potion_mixing_table.json",
+    "potion_mixing_table_active.json",
+  ]) {
+    const relativePath =
+      `src/main/resources/assets/syringe_mod/models/block/${fileName}`;
+    const model = readJson(relativePath);
+    const byName = new Map(
+      model.elements.map((element) => [element.name, element]),
+    );
+
+    // Give nested trim pieces distinct exterior planes. The old coordinates
+    // shared portions of the same plane and flickered on some depth buffers.
+    const bottomPlinth = byName.get("bottom_plinth");
+    bottomPlinth.from = [0.35, 0.75, 0.6];
+    bottomPlinth.to = [15.65, 1.25, 15.15];
+
+    for (const footName of [
+      "foot_front_left",
+      "foot_front_right",
+      "foot_rear_left",
+      "foot_rear_right",
+    ]) {
+      byName.get(footName).to[1] = 1.2;
+    }
+    byName.get("foot_rear_left").to[2] = 15.5;
+    byName.get("foot_rear_right").to[2] = 15.5;
+
+    const frontBand = byName.get("plinth_front_band");
+    frontBand.from[0] = 3.2;
+    frontBand.to[0] = 13.2;
+    byName.get("plinth_right_band").to[2] = 13.2;
+
+    // These faces are fully buried inside their adjoining parts.
+    delete byName.get("tray_base").faces.down;
+    const armRight = byName.get("arm_right");
+    if (armRight) {
+      delete armRight.faces.east;
+    }
+
+    // The irregular spill is assembled from overlapping top-only planes.
+    // Stagger their heights deterministically so no two overlaps are coplanar.
+    for (const [name, topY] of stainTopByName) {
+      const element = byName.get(name);
+      if (element) {
+        element.to[1] = topY;
+      }
+    }
+
+    writeJson(relativePath, model);
+  }
+}
+
 function syncInjectionGunChamberTint() {
   for (const fileName of [
     "injection_gun_empty.json",
@@ -285,5 +355,6 @@ function syncInjectionGunSights() {
 syncMedicineBag();
 syncWorktableDisplays();
 syncMixingLid();
+syncMixingDepthSafety();
 syncInjectionGunChamberTint();
 syncInjectionGunSights();

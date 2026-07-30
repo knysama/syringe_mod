@@ -41,6 +41,8 @@
 
   "recipe_type.syringe_mod.potion_crafting": "Potion Making",
   "recipe_type.syringe_mod.potion_mixing": "Potion Mixing",
+  "emi.category.syringe_mod.potion_crafting": "Potion Making",
+  "emi.category.syringe_mod.potion_mixing": "Potion Mixing",
   "advancement.syringe_mod.root.title": "Injection System",
   "advancement.syringe_mod.root.description": "Begin working with the injection gun and medicine equipment",
   "advancement.syringe_mod.side_effect.title": "A Furious Tailcock",

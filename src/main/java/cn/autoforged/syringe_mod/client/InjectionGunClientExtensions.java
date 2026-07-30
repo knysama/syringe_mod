@@ -29,14 +29,9 @@ public final class InjectionGunClientExtensions implements IClientItemExtensions
         }
 
         var action = ClientGunAnimations.actionFor(living);
-        if (action == cn.autoforged.syringe_mod.item.InjectionGunAction.SELF_INJECT
-                || action == cn.autoforged.syringe_mod.item.InjectionGunAction.QUICK_INJECT
-                || action == cn.autoforged.syringe_mod.item.InjectionGunAction.QUICK_RELOAD
-                || action == cn.autoforged.syringe_mod.item.InjectionGunAction.SELECTED_RELOAD) {
-            return HumanoidModel.ArmPose.BLOCK;
-        }
-        if (living.isUsingItem() && living.getUsedItemHand() == hand) {
-            return HumanoidModel.ArmPose.BOW_AND_ARROW;
+        if (action != null
+                || (living.isUsingItem() && living.getUsedItemHand() == hand)) {
+            return InjectionGunArmPose.ARM_POSE.getValue();
         }
         return null;
     }
