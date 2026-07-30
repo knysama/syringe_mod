@@ -34,10 +34,10 @@ public class SyringeModEmiPlugin implements EmiPlugin {
 
         RecipeManager recipeManager = registry.getRecipeManager();
         for (RecipeHolder<PotionCraftingRecipe> holder : recipeManager.getAllRecipesFor(ModRecipeTypes.POTION_CRAFTING)) {
-            registry.addRecipe(new PotionCraftingEmiRecipe(holder.value()));
+            registry.addRecipe(new PotionCraftingEmiRecipe(holder.id(), holder.value()));
         }
         for (RecipeHolder<PotionMixingRecipe> holder : recipeManager.getAllRecipesFor(ModRecipeTypes.POTION_MIXING)) {
-            registry.addRecipe(new PotionMixingEmiRecipe(holder.value()));
+            registry.addRecipe(new PotionMixingEmiRecipe(holder.id(), holder.value()));
         }
     }
 }

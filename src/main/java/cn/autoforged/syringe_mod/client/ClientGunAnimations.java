@@ -153,12 +153,15 @@ public final class ClientGunAnimations {
                     (player.getTicksUsingItem() + partialTick) / 5.0F,
                     0.0F, 1.0F));
             poseStack.translate(
-                    -0.36D * side * aim,
-                    0.055D * aim,
-                    -0.30D * aim);
-            poseStack.mulPose(Axis.XP.rotationDegrees(-4.0F * aim));
-            poseStack.mulPose(Axis.YP.rotationDegrees(-4.0F * side * aim));
-            poseStack.mulPose(Axis.ZP.rotationDegrees(1.0F * side * aim));
+                    -0.33D * side * aim,
+                    -0.075D * aim,
+                    -0.24D * aim);
+            // Keep the receiver level while aiming. The previous negative
+            // X rotation raised the muzzle above the crosshair and made the
+            // first-person view feel like the player was lifting their head.
+            poseStack.mulPose(Axis.XP.rotationDegrees(0.75F * aim));
+            poseStack.mulPose(Axis.YP.rotationDegrees(-2.5F * side * aim));
+            poseStack.mulPose(Axis.ZP.rotationDegrees(0.5F * side * aim));
             return true;
         }
         return false;

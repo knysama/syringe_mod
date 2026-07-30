@@ -148,15 +148,6 @@ function syncMixingLid() {
     "src/main/resources/assets/syringe_mod/models/block/potion_mixing_table_active.json";
   const idle = readJson(idlePath);
   const active = readJson(activePath);
-  const closedLid = new Map(
-    active.elements
-      .filter(
-        (element) =>
-          element.name.startsWith("lid_") ||
-          element.name.startsWith("gasket_"),
-      )
-      .map((element) => [element.name, element]),
-  );
   const hinge = [8, 9.88, 13.05];
 
   idle.elements = idle.elements.map((element) => {
@@ -166,22 +157,53 @@ function syncMixingLid() {
     ) {
       return element;
     }
-    const source = closedLid.get(element.name);
-    if (!source) {
-      throw new Error(`Missing closed lid element: ${element.name}`);
-    }
-    const opened = structuredClone(source);
-    // Keep every lid piece in the same closed-space coordinates and rotate the
-    // complete assembly around one hinge. The lid extends from the rear hinge
-    // toward the centrifuge (-Z), so +45 degrees opens toward the centrifuge.
+    const opened = structuredClone(element);
     opened.rotation = {
       angle: 45,
       axis: "x",
       origin: hinge,
     };
+    if (opened.name === "lid_glass_panel") {
+      // Give the transparent pane enough physical depth that its front and
+      // back faces do not fight in shallow viewing angles.
+      opened.from[1] = 10.07;
+      opened.to[1] = 10.27;
+    }
     return opened;
   });
+
+  // The processing model closes the lid. Keep the complete assembly above the
+  // highest rotor sample (Y=10.28), with the glass separated from the gasket.
+  const closedClearanceMinY = 10.42;
+  const activeLidElements = active.elements.filter(
+    (element) =>
+      element.name.startsWith("lid_") ||
+      element.name.startsWith("gasket_"),
+  );
+  const currentClosedMinY = Math.min(
+    ...activeLidElements.map((element) => element.from[1]),
+  );
+  const closedOffsetY = closedClearanceMinY - currentClosedMinY;
+  active.elements = active.elements.map((element) => {
+    if (
+      !element.name.startsWith("lid_") &&
+      !element.name.startsWith("gasket_")
+    ) {
+      return element;
+    }
+    const closed = structuredClone(element);
+    delete closed.rotation;
+    closed.from[1] += closedOffsetY;
+    closed.to[1] += closedOffsetY;
+    if (closed.name === "lid_glass_panel") {
+      closed.from[1] = 10.68;
+      closed.to[1] = 10.88;
+    }
+    return closed;
+  });
+
   writeJson(idlePath, idle);
+  writeJson(activePath, active);
 }
 
 function syncInjectionGunChamberTint() {
@@ -214,7 +236,54 @@ function syncInjectionGunChamberTint() {
   }
 }
 
+function sightElement(name, from, to) {
+  const faces = {};
+  for (const direction of ["north", "east", "south", "west", "up", "down"]) {
+    faces[direction] = {
+      uv: [0, 0, Math.max(1, to[0] - from[0]), Math.max(1, to[1] - from[1])],
+      texture: "#5",
+    };
+  }
+  return {
+    name,
+    from,
+    to,
+    faces,
+  };
+}
+
+function syncInjectionGunSights() {
+  const sightNames = new Set([
+    "front_sight_post",
+    "rear_sight_left",
+    "rear_sight_right",
+  ]);
+  const sights = [
+    sightElement("front_sight_post", [5.0, 15.0, 7.55], [5.8, 16.35, 8.45]),
+    sightElement("rear_sight_left", [18.0, 15.0, 6.25], [19.0, 16.25, 7.35]),
+    sightElement("rear_sight_right", [18.0, 15.0, 8.65], [19.0, 16.25, 9.75]),
+  ];
+
+  for (const fileName of [
+    "injection_gun_empty.json",
+    "injection_gun_loaded.json",
+    "injection_gun_reload_1.json",
+    "injection_gun_reload_2.json",
+    "injection_gun_reload_3.json",
+  ]) {
+    const relativePath =
+      `src/main/resources/assets/syringe_mod/models/item/${fileName}`;
+    const model = readJson(relativePath);
+    model.elements = model.elements.filter(
+      (element) => !sightNames.has(element.name),
+    );
+    model.elements.push(...structuredClone(sights));
+    writeJson(relativePath, model);
+  }
+}
+
 syncMedicineBag();
 syncWorktableDisplays();
 syncMixingLid();
 syncInjectionGunChamberTint();
+syncInjectionGunSights();

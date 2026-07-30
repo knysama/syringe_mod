@@ -239,7 +239,7 @@ public final class GunActionController {
         AmpouleProjectile projectile = new AmpouleProjectile(player.level(), player);
         projectile.setItem(loaded);
         projectile.shootFromRotation(player, player.getXRot(), player.getYRot(),
-                0.0F, 1.85F, 0.15F);
+                0.0F, 3.10F, 0.08F);
         if (!player.level().addFreshEntity(projectile)) {
             return false;
         }

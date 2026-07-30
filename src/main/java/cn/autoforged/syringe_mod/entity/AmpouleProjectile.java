@@ -16,6 +16,7 @@ import org.joml.Vector3f;
 
 public final class AmpouleProjectile extends ThrowableItemProjectile {
     private static final int MAX_LIFETIME_TICKS = 24;
+    private static final int TRAIL_PARTICLES_PER_TICK = 4;
 
     public AmpouleProjectile(EntityType<? extends AmpouleProjectile> entityType, Level level) {
         super(entityType, level);
@@ -73,14 +74,20 @@ public final class AmpouleProjectile extends ThrowableItemProjectile {
                 ((color >> 16) & 0xFF) / 255.0F,
                 ((color >> 8) & 0xFF) / 255.0F,
                 (color & 0xFF) / 255.0F);
-        Vec3 trailPosition = position().subtract(velocity.normalize().scale(0.22D));
-        level().addParticle(
-                new DustParticleOptions(rgb, 0.55F),
-                trailPosition.x,
-                trailPosition.y,
-                trailPosition.z,
-                -velocity.x * 0.025D,
-                -velocity.y * 0.025D,
-                -velocity.z * 0.025D);
+        Vec3 direction = velocity.normalize();
+        DustParticleOptions particle = new DustParticleOptions(rgb, 0.62F);
+        for (int index = 0; index < TRAIL_PARTICLES_PER_TICK; index++) {
+            double distance = 0.18D + index * 0.22D;
+            Vec3 trailPosition = position().subtract(direction.scale(distance));
+            double jitter = 0.018D;
+            level().addParticle(
+                    particle,
+                    trailPosition.x + (random.nextDouble() - 0.5D) * jitter,
+                    trailPosition.y + (random.nextDouble() - 0.5D) * jitter,
+                    trailPosition.z + (random.nextDouble() - 0.5D) * jitter,
+                    -velocity.x * 0.018D,
+                    -velocity.y * 0.018D,
+                    -velocity.z * 0.018D);
+        }
     }
 }

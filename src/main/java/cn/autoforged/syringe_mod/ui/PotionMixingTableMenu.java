@@ -12,14 +12,14 @@ import net.neoforged.neoforge.items.IItemHandler;
 import net.neoforged.neoforge.items.SlotItemHandler;
 
 public class PotionMixingTableMenu extends AbstractContainerMenu {
-    private static final int SLOT_INPUT_X = 24;
-    private static final int SLOT_LEFT_INPUT_Y = 34;
-    private static final int SLOT_RIGHT_INPUT_Y = 62;
-    private static final int SLOT_OUTPUT_X = 143;
-    private static final int SLOT_OUTPUT_Y = 48;
-    private static final int PLAYER_INV_Y = 110;
-    private static final int PLAYER_INV_OFFSET_X = 7;
-    private static final int HOTBAR_Y = 168;
+    private static final int SLOT_INPUT_X = 27;
+    private static final int SLOT_LEFT_INPUT_Y = 49;
+    private static final int SLOT_RIGHT_INPUT_Y = 97;
+    private static final int SLOT_OUTPUT_X = 208;
+    private static final int SLOT_OUTPUT_Y = 62;
+    private static final int PLAYER_INV_Y = 185;
+    private static final int PLAYER_INV_OFFSET_X = 43;
+    private static final int HOTBAR_Y = 243;
 
     private final PotionMixingTableBlockEntity blockEntity;
     private final ContainerData containerData;
