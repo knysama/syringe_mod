@@ -6,6 +6,7 @@ import cn.autoforged.syringe_mod.tag.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -29,19 +30,15 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.SURGE_INJECTION.get())
                 .add(ModItems.RESISTANCE_INJECTION.get())
                 .add(ModItems.EXPERIMENTAL_INJECTION.get())
-                .add(ModItems.IMMUNITY_ENHANCEMENT_INJECTION.get());
+                .add(ModItems.IMMUNITY_ENHANCEMENT_INJECTION.get())
+                .add(ModItems.VODKA.get())
+                .add(ModItems.POTION_AMPOULE.get());
 
-        tag(ModTags.Items.CURIOS_INJECTION_KIT)
+        tag(ModTags.Items.CURIOS_BELT)
                 .add(ModItems.SYRINGE_BAG.get());
 
-        tag(ModTags.Items.MEDICINE_MIXTURES)
-                .add(ModItems.MIXED_MEDICAL_MEDICINE_MIXTURE.get())
-                .add(ModItems.STEM_CELL_MEDICINE_MIXTURE.get())
-                .add(ModItems.CELL_REPAIR_MEDICINE_MIXTURE.get())
-                .add(ModItems.SATURATION_METABOLISM_MEDICINE_MIXTURE.get())
-                .add(ModItems.SURGE_MEDICINE_MIXTURE.get())
-                .add(ModItems.RESISTANCE_MEDICINE_MIXTURE.get())
-                .add(ModItems.EXPERIMENTAL_MEDICINE_MIXTURE.get())
-                .add(ModItems.IMMUNITY_ENHANCEMENT_MEDICINE_MIXTURE.get());
+        tag(ItemTags.DURABILITY_ENCHANTABLE)
+                .add(ModItems.INJECTION_GUN.get());
+
     }
 }

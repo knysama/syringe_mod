@@ -1,0 +1,16 @@
+{
+  "parent": "syringe_mod:root",
+  "display": {
+    "icon": {"id": "syringe_mod:experimental_injection"},
+    "title": {"translate": "advancement.syringe_mod.side_effect.title"},
+    "description": {"translate": "advancement.syringe_mod.side_effect.description"},
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "side_effect": {"trigger": "minecraft:impossible"}
+  },
+  "requirements": [["side_effect"]]
+}

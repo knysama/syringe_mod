@@ -1,11 +1,13 @@
 {
-  "type": "syringe_mod:crafting_injection",
-  "category": "misc",
-  "mixture": {
-    "item": "syringe_mod:resistance_medicine_mixture"
+  "type": "syringe_mod:potion_crafting",
+  "center": {
+    "item": "minecraft:glass_bottle"
   },
   "result": {
     "count": 4,
     "id": "syringe_mod:resistance_injection"
+  },
+  "side_a": {
+    "item": "minecraft:iron_ingot"
   }
 }

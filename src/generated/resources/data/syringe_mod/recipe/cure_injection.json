@@ -1,11 +1,13 @@
 {
-  "type": "syringe_mod:crafting_injection",
-  "category": "misc",
-  "mixture": {
-    "item": "syringe_mod:mixed_medical_medicine_mixture"
+  "type": "syringe_mod:potion_mixing",
+  "left": {
+    "item": "syringe_mod:stem_cell_injection"
   },
   "result": {
     "count": 4,
     "id": "syringe_mod:cure_injection"
+  },
+  "right": {
+    "item": "syringe_mod:cell_repair_injection"
   }
 }

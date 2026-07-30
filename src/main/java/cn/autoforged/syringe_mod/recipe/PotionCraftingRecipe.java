@@ -1,12 +1,15 @@
 package cn.autoforged.syringe_mod.recipe;
 
 import cn.autoforged.syringe_mod.SyringeMod;
+import cn.autoforged.syringe_mod.item.ModItems;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
@@ -26,7 +29,17 @@ public record PotionCraftingRecipe(Ingredient center, Ingredient sideA, Ingredie
 
     @Override
     public ItemStack assemble(PotionCraftingInput input, HolderLookup.Provider registries) {
-        return result.copy();
+        ItemStack assembled = result.copy();
+        if (assembled.is(ModItems.POTION_AMPOULE.get())) {
+            ItemStack potion = input.center().is(Items.POTION) ? input.center()
+                    : input.left().is(Items.POTION) ? input.left()
+                    : input.right().is(Items.POTION) ? input.right()
+                    : ItemStack.EMPTY;
+            if (!potion.isEmpty()) {
+                assembled.copyFrom(potion, DataComponents.POTION_CONTENTS);
+            }
+        }
+        return assembled;
     }
 
     @Override

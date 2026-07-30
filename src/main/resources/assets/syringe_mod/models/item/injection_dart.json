@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "syringe_mod:item/injection_dart_body",
+    "layer1": "syringe_mod:item/injection_dart_fluid"
+  }
+}

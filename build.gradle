@@ -23,7 +23,8 @@ sourceSets.main.resources {
 
     // Exclude common development only resources from finalized outputs
     exclude("**/*.bbmodel") // BlockBench project files
-    exclude("src/generated/**/.cache") // datagen cache files
+    exclude("**/.cache/**") // datagen cache files
+    exclude("assets/examplemod/**")
     exclude("opencode.json")
     exclude("INSTRUCTIONS.md")
     exclude("mc-src/**")
@@ -142,8 +143,11 @@ dependencies {
     compileOnly "dev.emi:emi-neoforge:${emi_version}"
     localRuntime "dev.emi:emi-neoforge:${emi_version}"
 
-    // Curios API - required dependency
-    implementation "top.theillusivec4.curios:curios-neoforge:${curios_version}"
+    // Curios API - compile-time integration, optional at runtime
+    compileOnly "top.theillusivec4.curios:curios-neoforge:${curios_version}"
+    if (!project.hasProperty("noCurios")) {
+        localRuntime "top.theillusivec4.curios:curios-neoforge:${curios_version}"
+    }
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
@@ -153,6 +157,7 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
             minecraft_version      : minecraft_version,
             minecraft_version_range: minecraft_version_range,
             neo_version            : neo_version,
+            neo_version_range      : neo_version_range,
             loader_version_range   : loader_version_range,
             mod_id                 : mod_id,
             mod_name               : mod_name,

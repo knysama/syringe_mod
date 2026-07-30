@@ -1,0 +1,13 @@
+{
+  "entries": [
+    {
+      "enum": "net/minecraft/client/model/HumanoidModel$ArmPose",
+      "name": "SYRINGE_MOD_INJECTION_GUN",
+      "constructor": "(ZLnet/neoforged/neoforge/client/IArmPoseTransformer;)V",
+      "parameters": {
+        "class": "cn/autoforged/syringe_mod/client/InjectionGunArmPose",
+        "field": "ARM_POSE"
+      }
+    }
+  ]
+}

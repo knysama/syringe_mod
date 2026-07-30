@@ -1,6 +1,7 @@
 package cn.autoforged.syringe_mod.integration.jei;
 
 import cn.autoforged.syringe_mod.SyringeMod;
+import cn.autoforged.syringe_mod.block.ModBlocks;
 import cn.autoforged.syringe_mod.recipe.ModRecipeTypes;
 import cn.autoforged.syringe_mod.recipe.PotionCraftingRecipe;
 import cn.autoforged.syringe_mod.recipe.PotionMixingRecipe;
@@ -8,6 +9,7 @@ import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
+import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
@@ -34,6 +36,14 @@ public class SyringeModJeiPlugin implements IModPlugin {
         registration.addRecipeCategories(
                 new PotionCraftingRecipeCategory(registration.getJeiHelpers().getGuiHelper()),
                 new PotionMixingRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+    }
+
+    @Override
+    public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
+        registration.addRecipeCatalyst(
+                ModBlocks.POTION_CRAFTING_TABLE.toStack(), POTION_CRAFTING_TYPE);
+        registration.addRecipeCatalyst(
+                ModBlocks.POTION_MIXING_TABLE.toStack(), POTION_MIXING_TYPE);
     }
 
     @Override

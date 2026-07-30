@@ -1,0 +1,25 @@
+{
+  "type": "syringe_mod:potion_mixing",
+  "left": {
+    "type": "neoforge:components",
+    "components": {
+      "minecraft:potion_contents": {
+        "potion": "minecraft:poison"
+      }
+    },
+    "items": "minecraft:potion"
+  },
+  "result": {
+    "count": 1,
+    "id": "syringe_mod:joja_cola"
+  },
+  "right": {
+    "type": "neoforge:components",
+    "components": {
+      "minecraft:potion_contents": {
+        "potion": "minecraft:weakness"
+      }
+    },
+    "items": "minecraft:potion"
+  }
+}

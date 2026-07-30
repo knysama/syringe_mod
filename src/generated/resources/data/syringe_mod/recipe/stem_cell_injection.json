@@ -1,11 +1,16 @@
 {
-  "type": "syringe_mod:crafting_injection",
-  "category": "misc",
-  "mixture": {
-    "item": "syringe_mod:stem_cell_medicine_mixture"
+  "type": "syringe_mod:potion_crafting",
+  "center": {
+    "item": "minecraft:glass_bottle"
   },
   "result": {
     "count": 4,
     "id": "syringe_mod:stem_cell_injection"
+  },
+  "side_a": {
+    "item": "minecraft:glistering_melon_slice"
+  },
+  "side_b": {
+    "item": "minecraft:iron_nugget"
   }
 }

@@ -26,9 +26,16 @@ public class ModKeyMappings {
     public static final Lazy<KeyMapping> OPEN_SYRINGE_BAG_KEY = Lazy.of(() -> new KeyMapping(
             "key." + SyringeMod.MODID + ".open_syringe_bag",
             KeyConflictContext.IN_GAME,
-            KeyModifier.CONTROL,
+            KeyModifier.SHIFT,
             InputConstants.Type.KEYSYM,
-            GLFW.GLFW_KEY_B,
+            GLFW.GLFW_KEY_E,
+            KEY_CATEGORY
+    ));
+
+    public static final Lazy<KeyMapping> RELOAD_INJECTION_GUN_KEY = Lazy.of(() -> new KeyMapping(
+            "key." + SyringeMod.MODID + ".reload_injection_gun",
+            InputConstants.Type.KEYSYM,
+            GLFW.GLFW_KEY_R,
             KEY_CATEGORY
     ));
 
@@ -36,5 +43,6 @@ public class ModKeyMappings {
     public static void registerKeyMappings(RegisterKeyMappingsEvent event) {
         event.register(USE_SYRINGE_KEY.get());
         event.register(OPEN_SYRINGE_BAG_KEY.get());
+        event.register(RELOAD_INJECTION_GUN_KEY.get());
     }
 }

@@ -1,0 +1,21 @@
+{
+  "parent": "syringe_mod:root",
+  "display": {
+    "icon": {"id": "syringe_mod:joja_cola"},
+    "title": {"translate": "advancement.syringe_mod.joja_member.title"},
+    "description": {"translate": "advancement.syringe_mod.joja_member.description"},
+    "frame": "goal",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "has_joja_cola": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{"items": "syringe_mod:joja_cola"}]
+      }
+    }
+  },
+  "requirements": [["has_joja_cola"]]
+}

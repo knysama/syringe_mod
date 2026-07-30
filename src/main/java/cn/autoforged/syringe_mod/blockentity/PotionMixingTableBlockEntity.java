@@ -3,6 +3,7 @@ package cn.autoforged.syringe_mod.blockentity;
 import cn.autoforged.syringe_mod.recipe.ModRecipeTypes;
 import cn.autoforged.syringe_mod.recipe.PotionMixingInput;
 import cn.autoforged.syringe_mod.recipe.PotionMixingRecipe;
+import cn.autoforged.syringe_mod.block.PotionMixingTableBlock;
 import cn.autoforged.syringe_mod.ui.PotionMixingTableMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -51,9 +52,10 @@ public class PotionMixingTableBlockEntity extends BlockEntity implements MenuPro
         }
     };
 
-    private final ContainerData data = new SimpleContainerData(2);
+    private final ContainerData data = new SimpleContainerData(3);
     private int progress = 0;
     private int maxProgress = 80;
+    private ItemStack processingResult = ItemStack.EMPTY;
     private final RecipeManager.CachedCheck<PotionMixingInput, PotionMixingRecipe> quickCheck =
             RecipeManager.createCheck(ModRecipeTypes.POTION_MIXING);
 
@@ -79,30 +81,36 @@ public class PotionMixingTableBlockEntity extends BlockEntity implements MenuPro
 
         var recipeHolder = quickCheck.getRecipeFor(input, level);
         if (recipeHolder.isEmpty()) {
+            setProcessingState(false);
             if (progress != 0) {
                 progress = 0;
+                processingResult = ItemStack.EMPTY;
                 setChanged();
             }
             data.set(0, 0);
             data.set(1, maxProgress);
+            data.set(2, 0);
             return;
         }
 
+        setProcessingState(true);
         PotionMixingRecipe recipe = recipeHolder.get().value();
         ItemStack result = recipe.assemble(input, level.registryAccess());
+        if (progress > 0 && !ItemStack.isSameItemSameComponents(processingResult, result)) {
+            progress = 0;
+        }
+        processingResult = result.copy();
         ItemStack output = itemHandler.getStackInSlot(SLOT_OUTPUT);
 
         if (!output.isEmpty() && (!ItemStack.isSameItemSameComponents(output, result)
                 || output.getCount() + result.getCount() > output.getMaxStackSize())) {
-            if (progress != 0) {
-                progress = 0;
-                setChanged();
-            }
-            data.set(0, 0);
+            data.set(0, progress);
             data.set(1, maxProgress);
+            data.set(2, 1);
             return;
         }
 
+        data.set(2, 0);
         progress++;
         data.set(0, progress);
         data.set(1, maxProgress);
@@ -124,8 +132,21 @@ public class PotionMixingTableBlockEntity extends BlockEntity implements MenuPro
                 output.grow(result.getCount());
             }
             progress = 0;
+            processingResult = ItemStack.EMPTY;
         }
         setChanged();
+    }
+
+    private void setProcessingState(boolean processing) {
+        if (level == null) return;
+        BlockState state = getBlockState();
+        if (state.hasProperty(PotionMixingTableBlock.PROCESSING)
+                && state.getValue(PotionMixingTableBlock.PROCESSING) != processing) {
+            level.setBlock(
+                    worldPosition,
+                    state.setValue(PotionMixingTableBlock.PROCESSING, processing),
+                    3);
+        }
     }
 
     @Override
@@ -144,6 +165,9 @@ public class PotionMixingTableBlockEntity extends BlockEntity implements MenuPro
         super.saveAdditional(tag, registries);
         tag.put("inventory", itemHandler.serializeNBT(registries));
         tag.putInt("progress", progress);
+        if (!processingResult.isEmpty()) {
+            tag.put("processing_result", processingResult.save(registries));
+        }
     }
 
     @Override
@@ -151,6 +175,7 @@ public class PotionMixingTableBlockEntity extends BlockEntity implements MenuPro
         super.loadAdditional(tag, registries);
         itemHandler.deserializeNBT(registries, tag.getCompound("inventory"));
         progress = tag.getInt("progress");
+        processingResult = ItemStack.parseOptional(registries, tag.getCompound("processing_result"));
     }
 
     @Override

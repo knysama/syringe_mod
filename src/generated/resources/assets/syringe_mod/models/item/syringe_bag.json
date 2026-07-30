@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:item/generated",
+  "parent": "minecraft:builtin/entity",
   "textures": {
-    "layer0": "syringe_mod:item/syringe_bag"
+    "particle": "syringe_mod:item/syringe_bag"
   }
 }

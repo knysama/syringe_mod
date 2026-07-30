@@ -15,12 +15,12 @@ public class ModCuriosDataProvider extends CuriosDataProvider {
 
     @Override
     public void generate(HolderLookup.Provider registries, ExistingFileHelper fileHelper) {
-        createSlot("injection_kit")
+        createSlot("belt")
                 .size(1)
                 .order(1);
 
-        createEntities("injection_kit")
+        createEntities("belt")
                 .addPlayer()
-                .addSlots("injection_kit");
+                .addSlots("belt");
     }
 }
