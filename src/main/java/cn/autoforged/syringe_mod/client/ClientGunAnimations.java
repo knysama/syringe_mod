@@ -20,7 +20,6 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.neoforge.client.event.RenderHandEvent;
-import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 import java.util.HashMap;
@@ -31,15 +30,7 @@ import java.util.Map;
 public final class ClientGunAnimations {
     private static final Map<Integer, AnimationState> ACTIVE = new HashMap<>();
 
-    @SubscribeEvent
-    public static void registerPayload(RegisterPayloadHandlersEvent event) {
-        event.registrar("2").playToClient(
-                ClientboundGunAnimationPayload.TYPE,
-                ClientboundGunAnimationPayload.STREAM_CODEC,
-                ClientGunAnimations::handle);
-    }
-
-    private static void handle(ClientboundGunAnimationPayload payload, IPayloadContext context) {
+    public static void handle(ClientboundGunAnimationPayload payload, IPayloadContext context) {
         context.enqueueWork(() -> {
             Minecraft minecraft = Minecraft.getInstance();
             if (minecraft.level == null) {
