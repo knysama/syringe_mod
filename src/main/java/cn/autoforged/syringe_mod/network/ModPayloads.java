@@ -1,9 +1,11 @@
 package cn.autoforged.syringe_mod.network;
 
 import cn.autoforged.syringe_mod.SyringeMod;
+import cn.autoforged.syringe_mod.client.ClientGunAnimations;
 import cn.autoforged.syringe_mod.integration.OptionalAccessoryBag;
 import cn.autoforged.syringe_mod.item.GunActionController;
 import cn.autoforged.syringe_mod.item.InjectionGunAction;
+import cn.autoforged.syringe_mod.network.payload.ClientboundGunAnimationPayload;
 import cn.autoforged.syringe_mod.network.payload.ServerboundOpenSyringeBagPayload;
 import cn.autoforged.syringe_mod.network.payload.ServerboundInjectionGunActionPayload;
 import cn.autoforged.syringe_mod.network.payload.ServerboundSelectAmpoulePayload;
@@ -38,6 +40,22 @@ public class ModPayloads {
                 ServerboundOpenSyringeBagPayload.STREAM_CODEC,
                 ModPayloads::handleOpenSyringeBag
         );
+        registrar.playToClient(
+                ClientboundGunAnimationPayload.TYPE,
+                ClientboundGunAnimationPayload.STREAM_CODEC,
+                ModPayloads::handleGunAnimation
+        );
+    }
+
+    /**
+     * Keep the registered handler itself in common code so a dedicated server
+     * can build the same payload registry without resolving Minecraft client
+     * classes. This payload is play-to-client only, so the body is invoked only
+     * on the receiving client.
+     */
+    private static void handleGunAnimation(
+            ClientboundGunAnimationPayload payload, IPayloadContext context) {
+        ClientGunAnimations.handle(payload, context);
     }
 
     private static void handleGunAction(ServerboundInjectionGunActionPayload payload, IPayloadContext context) {
